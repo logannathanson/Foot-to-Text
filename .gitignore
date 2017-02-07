@@ -1,5 +1,6 @@
 *.pdb
 *.exe
-bin/*
-obj/*
+bin/
+obj/
+v15/
 
