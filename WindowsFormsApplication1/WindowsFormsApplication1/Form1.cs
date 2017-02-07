@@ -13,6 +13,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+        private string contactsTxtDir = "..\\..\\Contacts.txt";
         private Contact[] phoneBook = new Contact[1];
 
 
@@ -23,7 +24,7 @@ namespace WindowsFormsApplication1
 
         private void Write(Contact obj)
         {
-            StreamWriter sw = new StreamWriter("Contacts.txt");
+            StreamWriter sw = new StreamWriter(contactsTxtDir);
             sw.WriteLine(phoneBook.Length + 1);
             sw.WriteLine(obj.FirstName);
             sw.WriteLine(obj.LastName);
@@ -41,7 +42,7 @@ namespace WindowsFormsApplication1
 
         private void Read()
         {
-            StreamReader sr = new StreamReader("Contacts.txt");
+            StreamReader sr = new StreamReader(contactsTxtDir);
             phoneBook = new Contact[Convert.ToInt32(sr.ReadLine())];
 
             for (int i = 0; i < phoneBook.Length; ++i)
