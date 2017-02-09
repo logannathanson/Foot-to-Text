@@ -16,6 +16,13 @@ namespace WindowsFormsApplication1
         private string contactsTxtDir = "..\\..\\Contacts.txt";
         private Contact[] phoneBook = new Contact[1];
 
+        private const int WM_USER = 0x0400;
+
+        private enum MessageType
+        {
+            Test = WM_USER,
+            Test1
+        };
 
         public Form1()
         {
@@ -105,6 +112,22 @@ namespace WindowsFormsApplication1
             Display();
             ClearForm();
 
+        }
+
+        [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
+        protected override void WndProc(ref Message m)
+        {
+            // Listen for operating system messages.
+            switch ((MessageType) m.Msg)
+            {
+                case MessageType.Test:
+                    txtFirstName.Text = "OH shit";
+                    break;
+                case MessageType.Test1:
+                    txtLastName.Text = "Whaddup";
+                    break;
+            }
+            base.WndProc(ref m);
         }
     }
 }
