@@ -77,12 +77,7 @@ namespace WindowsFormsApplication1
             button4.Text = phoneBook[3].FirstName;
         }
 
-        private void ClearForm()
-        {
-            txtFirstName.Text = String.Empty;
-            txtLastName.Text = String.Empty;
-            txtPhone.Text = String.Empty;
-        }
+       
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -103,14 +98,10 @@ namespace WindowsFormsApplication1
         private void btnAddContact_Click(object sender, EventArgs e)
         {
             Contact obj = new Contact();
-            obj.FirstName = txtFirstName.Text;
-            obj.LastName = txtLastName.Text;
-            obj.Phone = txtPhone.Text;
 
             Write(obj);
             Read();
             Display();
-            ClearForm();
 
         }
 
@@ -121,13 +112,45 @@ namespace WindowsFormsApplication1
             switch ((MessageType) m.Msg)
             {
                 case MessageType.Test:
-                    txtFirstName.Text = "OH shit";
+                    //txtFirstName.Text = "OH shit";
+                    button1.Text = "OH shit!";
                     break;
                 case MessageType.Test1:
-                    txtLastName.Text = "Whaddup";
+                    //txtLastName.Text = "Whaddup";
+                    button2.Text = "Whaddup!";
                     break;
             }
             base.WndProc(ref m);
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
