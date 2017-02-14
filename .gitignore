@@ -3,4 +3,5 @@
 bin/
 obj/
 v15/
+*.obj
 
