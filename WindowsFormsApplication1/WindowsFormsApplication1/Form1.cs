@@ -1,4 +1,5 @@
-﻿using System;
+﻿﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace WindowsFormsApplication1
     {
         private string contactsTxtDir = "..\\..\\Contacts.txt";
         private Contact[] phoneBook = new Contact[1];
+        private Process main_proc;
 
         private const int WM_USER = 0x0400;
 
@@ -27,6 +29,23 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
+            Shown += new EventHandler(Form_Shown);
+            FormClosing += new FormClosingEventHandler(Form_Closing);
+        }
+
+        private void Form_Shown(object sender, EventArgs e)
+        {
+            ProcessStartInfo objProcess = new ProcessStartInfo(@"..\..\..\..\KeyboardInterface\main.exe");
+            objProcess.UseShellExecute = false;
+            objProcess.RedirectStandardOutput = true;
+            //objProcess.CreateNoWindow = true; // Uncomment for release mode
+
+            main_proc = Process.Start(objProcess);
+        }
+
+        private void Form_Closing(object sender, FormClosingEventArgs e)
+        {
+            main_proc.Kill(); // Dam son
         }
 
         private void Write(Contact obj)
@@ -102,7 +121,6 @@ namespace WindowsFormsApplication1
             Write(obj);
             Read();
             Display();
-
         }
 
         [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
@@ -112,11 +130,9 @@ namespace WindowsFormsApplication1
             switch ((MessageType) m.Msg)
             {
                 case MessageType.Test:
-                    //txtFirstName.Text = "OH shit";
                     button1.Text = "OH shit!";
                     break;
                 case MessageType.Test1:
-                    //txtLastName.Text = "Whaddup";
                     button2.Text = "Whaddup!";
                     break;
             }
