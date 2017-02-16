@@ -11,18 +11,21 @@
 
 int main()
 {
+	int i = 1;
 	while (true)
 	{
 		try
 		{
 			View v {"Foot-to-Text"};
-			v.test();
 
 			std::string in;
 			std::cin >> in;
 			if (in == "q") break;
 			else
-				v.test1(in);
+			{
+				v.set_button(i, in);
+				i++; if (i > 4) i = 1;
+			}
 		}
 		catch (std::exception& e)
 		{

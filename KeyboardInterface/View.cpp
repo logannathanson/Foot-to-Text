@@ -1,17 +1,14 @@
 #include "View.h"
 #include "MessageType.h"
 
+#include <cassert>
+
 View::View(const std::string& program_name)
 	: window(program_name)
 { }
 
-void View::test()
+void View::set_button(int which, const std::string& text)
 {
-	window.notify(MessageType::option1Text, "It's alive!");
-	window.notify(MessageType::option2Text, "And the messages are working");
-}
-
-void View::test1(const std::string& new_text)
-{
-	window.notify(MessageType::option3Text, new_text);
+	assert(which > 0);
+	window.notify(static_cast<MessageType>((int) MessageType::option1Text + (which - 1)), text);
 }
