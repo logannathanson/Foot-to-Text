@@ -9,6 +9,8 @@
 #include <string>
 #include <stdexcept>
 
+#include <fstream>
+
 int main()
 {
 	int i = 1;
@@ -20,6 +22,7 @@ int main()
 
 			std::string in;
 			std::cin >> in;
+
 			if (in == "q") break;
 			else
 			{

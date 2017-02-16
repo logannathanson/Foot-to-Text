@@ -23,8 +23,6 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        private string contactsTxtDir = "..\\..\\Contacts.txt";
-        private Contact[] phoneBook = new Contact[1];
         private Process main_proc;
 
         private const int WM_COPYDATA = 0x004A;
@@ -37,11 +35,38 @@ namespace WindowsFormsApplication1
             option4Text
         };
 
+        private Form3 frm3;
+
+
         public Form1()
         {
             InitializeComponent();
+
+            frm3 = new Form3();
+            frm3.ButtonWidthPlusWasClicked += new Form3.ClickButton(formB_ButtonWidthPlusWasClicked);
+            frm3.ButtonWidthMinusWasClicked += new Form3.ClickButton(formB_ButtonWidthMinusWasClicked);
+            
+
             Shown += new EventHandler(Form_Shown);
             FormClosing += new FormClosingEventHandler(Form_Closing);
+        }
+
+        void formB_ButtonWidthPlusWasClicked()
+        {
+            button1.Width += 10;
+            button2.Width += 10;
+            button3.Width += 10;
+            button4.Width += 10;
+            button5.Width += 10;
+        }
+
+        void formB_ButtonWidthMinusWasClicked()
+        {
+            button1.Width -= 10;
+            button2.Width -= 10;
+            button3.Width -= 10;
+            button4.Width -= 10;
+            button5.Width -= 10;
         }
 
         private void Form_Shown(object sender, EventArgs e)
@@ -59,79 +84,8 @@ namespace WindowsFormsApplication1
             main_proc.Kill(); // Dam son
         }
 
-        private void Write(Contact obj)
-        {
-            StreamWriter sw = new StreamWriter(contactsTxtDir);
-            sw.WriteLine(phoneBook.Length + 1);
-            sw.WriteLine(obj.FirstName);
-            sw.WriteLine(obj.LastName);
-            sw.WriteLine(obj.Phone);
-
-            for (int i = 0; i < phoneBook.Length; ++i)
-            {
-                sw.WriteLine(phoneBook[i].FirstName);
-                sw.WriteLine(phoneBook[i].LastName);
-                sw.WriteLine(phoneBook[i].Phone);
-            }
-
-            sw.Close();
-        }
-
-        private void Read()
-        {
-            StreamReader sr = new StreamReader(contactsTxtDir);
-            phoneBook = new Contact[Convert.ToInt32(sr.ReadLine())];
-
-            for (int i = 0; i < phoneBook.Length; ++i)
-            {
-                phoneBook[i] = new Contact();
-                phoneBook[i].FirstName = sr.ReadLine();
-                phoneBook[i].LastName = sr.ReadLine();
-                phoneBook[i].Phone = sr.ReadLine();
-            }
-
-            sr.Close();
-        }
-
-        private void Display()
-        {
-            lstContacts.Items.Clear();
-
-            for (int i = 0; i < phoneBook.Length; ++i)
-            {
-                lstContacts.Items.Add(phoneBook[i].ToString());
-            }
-            button1.Text = phoneBook[0].FirstName;
-            button2.Text = phoneBook[1].FirstName;
-            button3.Text = phoneBook[2].FirstName;
-            button4.Text = phoneBook[3].FirstName;
-        }
-
-       
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            Read();
-            Display();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAddContact_Click(object sender, EventArgs e)
-        {
-            Contact obj = new Contact();
-
-            Write(obj);
-            Read();
-            Display();
         }
 
         [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
@@ -166,16 +120,6 @@ namespace WindowsFormsApplication1
             base.WndProc(ref m);
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -194,6 +138,16 @@ namespace WindowsFormsApplication1
         private void button3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            frm3.Show();
+        }
+
+        internal static string setButtons()
+        {
+            throw new NotImplementedException();
         }
     }
 }
