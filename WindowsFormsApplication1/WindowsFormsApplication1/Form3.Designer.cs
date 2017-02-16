@@ -40,17 +40,18 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(77, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(254, 68);
             this.label1.TabIndex = 0;
             this.label1.Text = "Settings";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 114);
+            this.label2.Location = new System.Drawing.Point(12, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(319, 68);
             this.label2.TabIndex = 1;
@@ -60,7 +61,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 198);
+            this.label3.Location = new System.Drawing.Point(15, 200);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(319, 68);
             this.label3.TabIndex = 2;
@@ -68,9 +69,9 @@
             // 
             // buttonWidthPlus
             // 
-            this.buttonWidthPlus.Location = new System.Drawing.Point(224, 114);
+            this.buttonWidthPlus.Location = new System.Drawing.Point(22, 137);
             this.buttonWidthPlus.Name = "buttonWidthPlus";
-            this.buttonWidthPlus.Size = new System.Drawing.Size(54, 37);
+            this.buttonWidthPlus.Size = new System.Drawing.Size(174, 37);
             this.buttonWidthPlus.TabIndex = 3;
             this.buttonWidthPlus.Text = "+";
             this.buttonWidthPlus.UseVisualStyleBackColor = true;
@@ -78,9 +79,9 @@
             // 
             // buttonWidthMinus
             // 
-            this.buttonWidthMinus.Location = new System.Drawing.Point(299, 114);
+            this.buttonWidthMinus.Location = new System.Drawing.Point(224, 137);
             this.buttonWidthMinus.Name = "buttonWidthMinus";
-            this.buttonWidthMinus.Size = new System.Drawing.Size(54, 37);
+            this.buttonWidthMinus.Size = new System.Drawing.Size(159, 37);
             this.buttonWidthMinus.TabIndex = 4;
             this.buttonWidthMinus.Text = "-";
             this.buttonWidthMinus.UseVisualStyleBackColor = true;
@@ -88,9 +89,9 @@
             // 
             // textSizePlus
             // 
-            this.textSizePlus.Location = new System.Drawing.Point(224, 203);
+            this.textSizePlus.Location = new System.Drawing.Point(22, 254);
             this.textSizePlus.Name = "textSizePlus";
-            this.textSizePlus.Size = new System.Drawing.Size(54, 37);
+            this.textSizePlus.Size = new System.Drawing.Size(174, 37);
             this.textSizePlus.TabIndex = 5;
             this.textSizePlus.Text = "+";
             this.textSizePlus.UseVisualStyleBackColor = true;
@@ -98,9 +99,9 @@
             // 
             // textSizeMinus
             // 
-            this.textSizeMinus.Location = new System.Drawing.Point(299, 205);
+            this.textSizeMinus.Location = new System.Drawing.Point(224, 254);
             this.textSizeMinus.Name = "textSizeMinus";
-            this.textSizeMinus.Size = new System.Drawing.Size(54, 37);
+            this.textSizeMinus.Size = new System.Drawing.Size(170, 37);
             this.textSizeMinus.TabIndex = 6;
             this.textSizeMinus.Text = "-";
             this.textSizeMinus.UseVisualStyleBackColor = true;

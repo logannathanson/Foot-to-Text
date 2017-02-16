@@ -17,6 +17,9 @@ namespace WindowsFormsApplication1
         public delegate void ClickButton();
         public event ClickButton ButtonWidthPlusWasClicked;
         public event ClickButton ButtonWidthMinusWasClicked;
+        public event ClickButton TextSizePlusWasClicked;
+        public event ClickButton TextSizeMinusWasClicked;
+
 
         public Form3()
         {
@@ -50,12 +53,12 @@ namespace WindowsFormsApplication1
 
         private void textSizePlus_Click(object sender, EventArgs e)
         {
-
+            TextSizePlusWasClicked();
         }
 
         private void textSizeMinus_Click(object sender, EventArgs e)
         {
-
+            TextSizeMinusWasClicked();
         }
     }
 }

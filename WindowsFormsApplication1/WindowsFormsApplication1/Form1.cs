@@ -23,9 +23,12 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+
         private Process main_proc;
 
         private const int WM_COPYDATA = 0x004A;
+
+
 
         private enum MessageType
         {
@@ -41,32 +44,62 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
-
-            frm3 = new Form3();
-            frm3.ButtonWidthPlusWasClicked += new Form3.ClickButton(formB_ButtonWidthPlusWasClicked);
-            frm3.ButtonWidthMinusWasClicked += new Form3.ClickButton(formB_ButtonWidthMinusWasClicked);
-            
-
             Shown += new EventHandler(Form_Shown);
             FormClosing += new FormClosingEventHandler(Form_Closing);
         }
 
+        private void Form1_Resize(object sender, System.EventArgs e)
+        {
+                button1.Height = (this.Height / 5) - 20;
+                button2.Height = (this.Height / 5) - 20;
+                button3.Height = (this.Height / 5) - 20;
+                button4.Height = (this.Height / 5) - 20;
+                button5.Height = (this.Height / 5) - 20;
+
+            button1.Location = new Point(15, 10);
+
+            int height = this.Height;
+
+            button2.Location = new Point(button1.Location.X, button1.Location.Y + button1.Height + 10);
+            button3.Location = new Point(button1.Location.X, button2.Location.Y + button1.Height + 10);
+            button4.Location = new Point(button1.Location.X, button3.Location.Y + button1.Height + 10);
+            button5.Location = new Point(button1.Location.X, button4.Location.Y + button1.Height + 10);
+        }
+
         void formB_ButtonWidthPlusWasClicked()
         {
-            button1.Width += 10;
-            button2.Width += 10;
-            button3.Width += 10;
-            button4.Width += 10;
-            button5.Width += 10;
+            this.Width += 10;
+            
         }
 
         void formB_ButtonWidthMinusWasClicked()
         {
-            button1.Width -= 10;
-            button2.Width -= 10;
-            button3.Width -= 10;
-            button4.Width -= 10;
-            button5.Width -= 10;
+            this.Width -= 10;
+        }
+
+        void formB_TextSizePlusWasClicked()
+        {
+            float currentSize = button1.Font.Size;
+            int nextSize = (int)currentSize + 1;
+            button1.Font = new Font("Microsoft Sans Serif", nextSize, FontStyle.Regular);
+            button2.Font = button1.Font;
+            button3.Font = button1.Font;
+            button4.Font = button1.Font;
+            button5.Font = button1.Font;
+
+        }
+
+        void formB_TextSizeMinusWasClicked()
+        {
+            float currentSize = button1.Font.Size;
+            int nextSize = (int)currentSize - 1;
+            if (nextSize < 1) nextSize = 1;
+            button1.Font = new Font("Microsoft Sans Serif", nextSize, FontStyle.Regular);
+            button2.Font = button1.Font;
+            button3.Font = button1.Font;
+            button4.Font = button1.Font;
+            button5.Font = button1.Font;
+
         }
 
         private void Form_Shown(object sender, EventArgs e)
@@ -142,12 +175,13 @@ namespace WindowsFormsApplication1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            frm3.Show();
-        }
+            frm3 = new Form3();
+            frm3.ButtonWidthPlusWasClicked += new Form3.ClickButton(formB_ButtonWidthPlusWasClicked);
+            frm3.ButtonWidthMinusWasClicked += new Form3.ClickButton(formB_ButtonWidthMinusWasClicked);
+            frm3.TextSizePlusWasClicked += new Form3.ClickButton(formB_TextSizePlusWasClicked);
+            frm3.TextSizeMinusWasClicked += new Form3.ClickButton(formB_TextSizeMinusWasClicked);
 
-        internal static string setButtons()
-        {
-            throw new NotImplementedException();
+            frm3.Show();
         }
     }
 }
