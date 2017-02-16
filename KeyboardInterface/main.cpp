@@ -21,6 +21,8 @@ int main()
 			std::string in;
 			std::cin >> in;
 			if (in == "q") break;
+			else
+				v.test1(in);
 		}
 		catch (std::exception& e)
 		{

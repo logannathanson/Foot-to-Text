@@ -31,8 +31,10 @@ namespace WindowsFormsApplication1
 
         private enum MessageType
         {
-            Test0,
-            Test1
+            option1Text,
+            option2Text,
+            option3Text,
+            option4Text
         };
 
         public Form1()
@@ -144,10 +146,21 @@ namespace WindowsFormsApplication1
                     var msg = data.dwData;
                     var str = Marshal.PtrToStringAnsi(data.lpData);
 
-                    // Just to prove that it's also getting the "msg", which we'll use for differnt command types
-                    str += msg.ToString();
-
-                    button2.Text = str;
+                    switch ((MessageType) msg)
+                    {
+                        case MessageType.option1Text:
+                            button1.Text = str;
+                            break;
+                        case MessageType.option2Text:
+                            button2.Text = str;
+                            break;
+                        case MessageType.option3Text:
+                            button3.Text = str;
+                            break;
+                        case MessageType.option4Text:
+                            button4.Text = str;
+                            break;
+                    }
                     break;
             }
             base.WndProc(ref m);

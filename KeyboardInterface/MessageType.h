@@ -2,6 +2,8 @@
 
 enum class MessageType
 {
-	Test0,
-	Test1
+	option1Text,
+	option2Text,
+	option3Text,
+	option4Text
 };
