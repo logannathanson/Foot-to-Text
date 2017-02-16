@@ -7,4 +7,4 @@ IF NOT DEFINED RANVARS (
     echo "VC is now set"
 )
 
-cl main.cpp Keyboard.cpp View.cpp AppWindow.cpp /EHsc User32.lib
+cl main.cpp Keyboard.cpp View.cpp AppWindow.cpp /EHsc /W4 User32.lib

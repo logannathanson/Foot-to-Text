@@ -33,8 +33,8 @@ void Keyboard::send_char(char c)
     
     auto mod_guard = ModifierGuard(vk_package);
 
-    send_key_down(virtual_key);
-    send_key_up(virtual_key);
+    send_key_down(static_cast<WORD>(virtual_key));
+    send_key_up(static_cast<WORD>(virtual_key));
 }
 
 void Keyboard::send_key_down(WORD virtual_key)
@@ -63,9 +63,9 @@ SHORT Keyboard::get_virtual_key(char c)
 }
 
 Keyboard::ModifierGuard::ModifierGuard(SHORT vk_package)
-    : is_shift(vk_package & 0x100),
-    is_ctrl(vk_package & 0x200),
-    is_alt(vk_package & 0x400)
+    : is_shift((vk_package & 0x100) != 0),
+    is_ctrl((vk_package & 0x200) != 0),
+    is_alt((vk_package & 0x400) != 0)
 {
     if (is_shift) Keyboard::get_instance().send_key_down(VK_SHIFT);
     if (is_ctrl) Keyboard::get_instance().send_key_down(VK_CONTROL);
