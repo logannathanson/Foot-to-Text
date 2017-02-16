@@ -9,6 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Sequential)]
+struct COPYDATASTRUCT
+{
+    public IntPtr dwData;
+    public int cbData;
+    public IntPtr lpData;
+}
 
 namespace WindowsFormsApplication1
 {
@@ -18,11 +27,11 @@ namespace WindowsFormsApplication1
         private Contact[] phoneBook = new Contact[1];
         private Process main_proc;
 
-        private const int WM_USER = 0x0400;
+        private const int WM_COPYDATA = 0x004A;
 
         private enum MessageType
         {
-            Test = WM_USER,
+            Test0,
             Test1
         };
 
@@ -127,13 +136,18 @@ namespace WindowsFormsApplication1
         protected override void WndProc(ref Message m)
         {
             // Listen for operating system messages.
-            switch ((MessageType) m.Msg)
+            switch (m.Msg)
             {
-                case MessageType.Test:
-                    button1.Text = "OH shit!";
-                    break;
-                case MessageType.Test1:
-                    button2.Text = "Whaddup!";
+                case WM_COPYDATA:
+                    // Need to marshall the data into a useable form
+                    var data = Marshal.PtrToStructure<COPYDATASTRUCT>(m.LParam);
+                    var msg = data.dwData;
+                    var str = Marshal.PtrToStringAnsi(data.lpData);
+
+                    // Just to prove that it's also getting the "msg", which we'll use for differnt command types
+                    str += msg.ToString();
+
+                    button2.Text = str;
                     break;
             }
             base.WndProc(ref m);

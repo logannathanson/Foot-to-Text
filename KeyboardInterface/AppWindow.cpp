@@ -37,7 +37,12 @@ AppWindow::AppWindow(const std::string& program_name)
 	window_handle = payload.handle;
 }
 
-void AppWindow::notify(MessageType msg, const std::string&)
+void AppWindow::notify(MessageType msg, const std::string& str)
 {
-	SendMessage(window_handle, (UINT) msg, (WPARAM) nullptr, (LPARAM) nullptr);
+	COPYDATASTRUCT cp_struct;
+	cp_struct.dwData = (ULONG_PTR) msg;
+	cp_struct.lpData = (PVOID) str.c_str();
+	cp_struct.cbData = sizeof(char) * (str.size() + 1); // Can't forget that null byte, baby
+
+	SendMessage(window_handle, (UINT) WM_COPYDATA, (WPARAM) GetCurrentProcess(), (LPARAM) &cp_struct);
 }

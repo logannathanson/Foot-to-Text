@@ -2,6 +2,6 @@
 
 enum class MessageType
 {
-	Test = WM_USER,
+	Test0,
 	Test1
 };

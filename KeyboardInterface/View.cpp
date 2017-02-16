@@ -7,5 +7,5 @@ View::View(const std::string& program_name)
 
 void View::test()
 {
-	window.notify(MessageType::Test, "");
+	window.notify(MessageType::Test0, "It's alive!");
 }
