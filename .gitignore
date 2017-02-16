@@ -1,10 +1,7 @@
 *.pdb
 *.exe
-bin/
 obj/
 *.obj
-.vs/
-debug.*
 *.db
 *.opendb
 
