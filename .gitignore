@@ -4,4 +4,6 @@ obj/
 *.obj
 *.db
 *.opendb
+*.lib
+*.exp
 

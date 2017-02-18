@@ -11,32 +11,78 @@
 
 #include <fstream>
 
-int main()
+/*
+	Eventually, we'll want all this abstracted into a Controller.
+	Hack it for now.
+*/
+
+View v {"Foot-to-Text"}; // This is super bad :'/
+// Note that due to this ^ if you try to run this process without the GUI open
+// it'll crash.
+
+void f1_press()
 {
-	int i = 1;
-	while (true)
-	{
-		try
-		{
-			View v {"Foot-to-Text"};
+	v.set_button(1, "yo dawg");
+}
 
-			std::string in;
-			std::cin >> in;
+void f2_press()
+{
+	v.set_button(2, "qu'est-ce que c'est");
+}
 
-			if (in == "q") break;
-			else
-			{
-				v.set_button(i, in);
-				i++; if (i > 4) i = 1;
-			}
-		}
-		catch (std::exception& e)
+void f3_press()
+{
+	v.set_button(3, "was ist das");
+}
+
+void f4_press()
+{
+	v.set_button(4, "que");
+}
+
+HHOOK kbdhook;
+__declspec(dllexport) LRESULT CALLBACK handlekeys(int code, WPARAM wp, LPARAM lp)
+{
+	if (code == HC_ACTION && (wp == WM_SYSKEYDOWN || wp == WM_KEYDOWN)) {
+		KBDLLHOOKSTRUCT st_hook = *((KBDLLHOOKSTRUCT*)lp);
+		DWORD key = st_hook.vkCode;
+		
+		switch (key)
 		{
-			std::cerr << e.what() << std::endl;
-			exit(1);
+			case VK_F1:
+				f1_press();
+				break;
+			case VK_F2:
+				f2_press();
+				break;
+			case VK_F3:
+				f3_press();
+				break;
+			case VK_F4:
+				f4_press();
+				break;
 		}
 	}
 
+	return CallNextHookEx(kbdhook, code, wp, lp);
+}
+
+int main()
+{
+	HINSTANCE modulehandle = GetModuleHandle(NULL);
+	kbdhook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)handlekeys, modulehandle, NULL);
+
+	MSG	msg;
+	bool running = true;
+	while (running)
+	{
+		if (!GetMessage(&msg, NULL, 0, 0))
+		{
+			running = false;
+		}
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
 
 	// Exit normally
 	return 0;
