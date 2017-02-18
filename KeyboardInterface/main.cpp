@@ -152,14 +152,15 @@ void f3_press()
 
 void f4_press()
 {
-	if (!in_category) {
+	if (!in_category)
+	{
 		in_category = true;
 		phrase = 1;
 	}
 
-	else {
-		//send_word(phrases[category][phrase]);
-		cout << "PRINTING PHRASE: " << phrases[category][phrase] << endl;
+	else
+	{
+		Keyboard::get_instance().send_word(phrases[category][phrase]);
 	}
 	button_update();
 }
@@ -193,17 +194,14 @@ LRESULT CALLBACK keypress_callback(int code, WPARAM wp, LPARAM lp)
 
 int main()
 {
-	HINSTANCE module_handle = GetModuleHandle(NULL);
-	keypress_hook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)keypress_callback, module_handle, NULL);
-
-	MSG	msg;
-
 	//read in file phrases.txt
-	string filename = "phrases.txt";
+	// Since we're running it from a different working director, gotta use a relative path
+	string filename = "..\\..\\..\\..\\KeyboardInterface\\phrases.txt";
 	ifstream ifs(filename);
 	string line = "";
 	int cat = -1;
 
+	v.set_button(1, "yo doawg");
 	while (getline(ifs, line)) {
 		if (line[0] != '\t') {
 			++cat;
@@ -218,7 +216,10 @@ int main()
 	//set buttons to initial state
 	button_update();
 
+	HINSTANCE module_handle = GetModuleHandle(NULL);
+	keypress_hook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)keypress_callback, module_handle, NULL);
 
+	MSG	msg;
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);
