@@ -11,33 +11,157 @@
 
 #include <fstream>
 
+#include <vector>
+
+using namespace std;
+
 /*
-	Eventually, we'll want all this abstracted into a Controller.
-	Hack it for now.
+Eventually, we'll want all this abstracted into a Controller.
+Hack it for now.
 */
 
-View v {"Foot-to-Text"}; // This is super bad :'/
+View v{ "Foot-to-Text" }; // This is super bad :'/
 // Note that due to this ^ if you try to run this process without the GUI open
 // it'll crash.
 
+void pretty_print2(vector<vector<string>> &vec, int cat, int p, bool i_c);
+void button_update();
+
+//TODO: fix global vars?
+vector<vector<string>> phrases;
+int category = 0;
+int phrase = 1;
+bool in_category = false;
+
+
+void button_update() {
+	if (!in_category) {
+		if (category + 4 < phrases.size()) {
+			//highlight button1
+			for (unsigned int i = category, b = 1; i < category + 4; ++i, ++b) {
+				v.set_button(b, phrases[i][0]);
+			}
+		}
+		else {
+			for (unsigned int i = phrases.size() - 4, b = 1; i < phrases.size(); ++i, ++b) {
+				if (i == category) {
+					//highlight button b
+				}
+				v.set_button(b, phrases[i][0]);
+			}
+		}
+	}
+	else {
+		if (phrase + 4 < phrases[category].size()) {
+			//highlight button 1
+			for (unsigned int i = phrase, b = 1; i < phrase + 4; ++i, ++b) {
+				v.set_button(b, phrases[category][i]);
+			}
+		}
+		else {
+			for (unsigned int i = phrases[category].size() - 4, b = 1; i < phrases[category].size(); ++i, ++b) {
+				if (i == phrase) {
+					//highlight button b
+				}
+				v.set_button(b, phrases[category][i]);
+			}
+		}
+	}
+	pretty_print2(phrases, category, phrase, in_category);
+}
+
+//TODO: remove pretty_print
+void pretty_print2(vector<vector<string>> &vec, int cat, int p, bool i_c) {
+	cout << endl;
+	if (!i_c) {
+		if (cat + 4 < vec.size()) {
+			cout << "> ";
+			for (int i = cat; i < cat + 4; ++i) {
+				cout << vec[i][0] << endl;
+			}
+		}
+		else {
+			for (int i = vec.size() - 4; i < vec.size(); ++i) {
+				if (i == cat) {
+					cout << "> ";
+				}
+				cout << vec[i][0] << endl;
+			}
+		}
+	}
+	else {
+		if (p + 4 < vec[cat].size()) {
+			cout << "> ";
+			for (int i = p; i < p + 4; ++i) {
+				cout << vec[cat][i] << endl;
+			}
+		}
+		else {
+			for (int i = vec[cat].size() - 4; i < vec[cat].size(); ++i) {
+				if (i == p) {
+					cout << "> ";
+				}
+				cout << vec[cat][i] << endl;
+			}
+		}
+	}
+
+	cout << endl;
+}
+
 void f1_press()
 {
-	v.set_button(1, "yo dawg");
+	if (!in_category) {
+		category = 0;
+	}
+	in_category = false;
+	phrase = 1;
+	button_update();
+
 }
 
 void f2_press()
 {
-	v.set_button(2, "qu'est-ce que c'est");
+	if (!in_category) {
+		if (category + 1 < phrases.size()) {
+			++category;
+		}
+	}
+	else {
+		if (phrase + 1 < phrases[category].size()) {
+			++phrase;
+		}
+	}
+	button_update();
 }
 
 void f3_press()
 {
-	v.set_button(3, "was ist das");
+	if (!in_category) {
+		if (category - 1 >= 0) {
+			--category;
+		}
+	}
+	else {
+		if (phrase - 1 >= 1) {
+			--phrase;
+		}
+	}
+	button_update();
 }
 
 void f4_press()
 {
-	v.set_button(4, "que");
+	if (!in_category) {
+		in_category = true;
+		phrase = 1;
+	}
+
+	else {
+		//send_word(phrases[category][phrase]);
+		cout << "PRINTING PHRASE: " << phrases[category][phrase] << endl;
+	}
+	button_update();
 }
 
 HHOOK keypress_hook;
@@ -73,6 +197,28 @@ int main()
 	keypress_hook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)keypress_callback, module_handle, NULL);
 
 	MSG	msg;
+
+	//read in file phrases.txt
+	string filename = "phrases.txt";
+	ifstream ifs(filename);
+	string line = "";
+	int cat = -1;
+
+	while (getline(ifs, line)) {
+		if (line[0] != '\t') {
+			++cat;
+			phrases.push_back(vector<string>());
+			phrases[cat].push_back(line);
+		}
+		else {
+			//remove initial tab character
+			phrases[cat].push_back(line.erase(0, 1));
+		}
+	}
+	//set buttons to initial state
+	button_update();
+
+
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		TranslateMessage(&msg);
