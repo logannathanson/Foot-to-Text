@@ -19,6 +19,7 @@ struct COPYDATASTRUCT
     public IntPtr lpData;
 }
 
+
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
@@ -28,6 +29,8 @@ namespace WindowsFormsApplication1
 
         private const int WM_COPYDATA = 0x004A;
 
+        Color defaultColor = Color.Linen;
+        Color highlightedColor = Color.LightSlateGray;
 
 
         private enum MessageType
@@ -35,7 +38,8 @@ namespace WindowsFormsApplication1
             option1Text,
             option2Text,
             option3Text,
-            option4Text
+            option4Text,
+            option5Text
         };
 
         private Form3 frm3;
@@ -121,6 +125,30 @@ namespace WindowsFormsApplication1
         {
         }
 
+        public void setHighlightedButton(string str)
+        {
+            button1.BackColor = defaultColor;
+            button2.BackColor = defaultColor;
+            button3.BackColor = defaultColor;
+            button4.BackColor = defaultColor;
+
+            switch (str)
+            {
+                case "1":
+                    button1.BackColor = highlightedColor;
+                    break;
+                case "2":
+                    button2.BackColor = highlightedColor;
+                    break;
+                case "3":
+                    button3.BackColor = highlightedColor;
+                    break;
+                case "4":
+                    button4.BackColor = highlightedColor;
+                    break;
+            }
+        }
+
         [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
         protected override void WndProc(ref Message m)
         {
@@ -147,6 +175,10 @@ namespace WindowsFormsApplication1
                         case MessageType.option4Text:
                             button4.Text = str;
                             break;
+                        case MessageType.option5Text:
+                            setHighlightedButton(str);
+                            break;
+
                     }
                     break;
             }

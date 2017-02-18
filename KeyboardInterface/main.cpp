@@ -12,6 +12,7 @@
 #include <fstream>
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -38,6 +39,7 @@ void button_update() {
 	if (!in_category) {
 		if (category + 4 < phrases.size()) {
 			//highlight button1
+			v.set_button(5, "1");
 			for (unsigned int i = category, b = 1; i < category + 4; ++i, ++b) {
 				v.set_button(b, phrases[i][0]);
 			}
@@ -46,6 +48,8 @@ void button_update() {
 			for (unsigned int i = phrases.size() - 4, b = 1; i < phrases.size(); ++i, ++b) {
 				if (i == category) {
 					//highlight button b
+					string button = to_string(b);
+					v.set_button(5, button);
 				}
 				v.set_button(b, phrases[i][0]);
 			}
@@ -54,6 +58,7 @@ void button_update() {
 	else {
 		if (phrase + 4 < phrases[category].size()) {
 			//highlight button 1
+			v.set_button(5, "1");
 			for (unsigned int i = phrase, b = 1; i < phrase + 4; ++i, ++b) {
 				v.set_button(b, phrases[category][i]);
 			}
@@ -62,6 +67,8 @@ void button_update() {
 			for (unsigned int i = phrases[category].size() - 4, b = 1; i < phrases[category].size(); ++i, ++b) {
 				if (i == phrase) {
 					//highlight button b
+					string button = to_string(b);
+					v.set_button(5, button);
 				}
 				v.set_button(b, phrases[category][i]);
 			}
