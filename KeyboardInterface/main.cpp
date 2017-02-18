@@ -40,14 +40,14 @@ void f4_press()
 	v.set_button(4, "que");
 }
 
-HHOOK kbdhook;
-__declspec(dllexport) LRESULT CALLBACK handlekeys(int code, WPARAM wp, LPARAM lp)
+HHOOK keypress_hook;
+LRESULT CALLBACK keypress_callback(int code, WPARAM wp, LPARAM lp)
 {
 	if (code == HC_ACTION && (wp == WM_SYSKEYDOWN || wp == WM_KEYDOWN)) {
-		KBDLLHOOKSTRUCT st_hook = *((KBDLLHOOKSTRUCT*)lp);
-		DWORD key = st_hook.vkCode;
+		KBDLLHOOKSTRUCT key_data = *((KBDLLHOOKSTRUCT*)lp);
+		DWORD virtual_key = key_data.vkCode;
 		
-		switch (key)
+		switch (virtual_key)
 		{
 			case VK_F1:
 				f1_press();
@@ -64,22 +64,17 @@ __declspec(dllexport) LRESULT CALLBACK handlekeys(int code, WPARAM wp, LPARAM lp
 		}
 	}
 
-	return CallNextHookEx(kbdhook, code, wp, lp);
+	return CallNextHookEx(keypress_hook, code, wp, lp);
 }
 
 int main()
 {
-	HINSTANCE modulehandle = GetModuleHandle(NULL);
-	kbdhook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)handlekeys, modulehandle, NULL);
+	HINSTANCE module_handle = GetModuleHandle(NULL);
+	keypress_hook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)keypress_callback, module_handle, NULL);
 
 	MSG	msg;
-	bool running = true;
-	while (running)
+	while (GetMessage(&msg, NULL, 0, 0))
 	{
-		if (!GetMessage(&msg, NULL, 0, 0))
-		{
-			running = false;
-		}
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
