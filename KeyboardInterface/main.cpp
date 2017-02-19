@@ -135,21 +135,6 @@ void f1_press()
 void f2_press()
 {
 	if (!in_category) {
-		if (category + 1 < phrases.size()) {
-			++category;
-		}
-	}
-	else {
-		if (phrase + 1 < phrases[category].size()) {
-			++phrase;
-		}
-	}
-	button_update();
-}
-
-void f3_press()
-{
-	if (!in_category) {
 		if (category - 1 >= 0) {
 			--category;
 		}
@@ -160,6 +145,21 @@ void f3_press()
 		}
 	}
 
+	button_update();
+}
+
+void f3_press()
+{
+	if (!in_category) {
+		if (category + 1 < phrases.size()) {
+			++category;
+		}
+	}
+	else {
+		if (phrase + 1 < phrases[category].size()) {
+			++phrase;
+		}
+	}
 	button_update();
 }
 
