@@ -21,9 +21,9 @@ Button | Action Name | Description
 
 1. Navigate to the project directory > Main
 2. Open the '.sln' file in Visual Studio
-  a. *To use the Arduino*: Click the Debug tab then select Main Properties
-  b. Go to C/C++ and click on command line
-  c. In the additonal options box type /D OUR_ARDUINO
+    1. *To use the Arduino*: Click the Debug tab then select Main Properties
+    2. Go to C/C++ and click on command line
+    3. In the additonal options box type /D OUR_ARDUINO
 3. Go to Build and click Build Solution
 4. Navigate to project directory > WindowsFormApplication1
 5. Open the `.sln` file in Visual Studio
