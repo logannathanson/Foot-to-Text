@@ -109,8 +109,6 @@ namespace WindowsFormsApplication1
         private void Form_Shown(object sender, EventArgs e)
         {
             ProcessStartInfo objProcess = new ProcessStartInfo(@"..\..\..\..\KeyboardInterface\main.exe");
-            objProcess.UseShellExecute = false;
-            objProcess.RedirectStandardOutput = true;
             //objProcess.CreateNoWindow = true; // Uncomment for release mode
 
             main_proc = Process.Start(objProcess);

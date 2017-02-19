@@ -1,4 +1,5 @@
 #define WINVER 0x0500
+#include <boost/asio.hpp>
 #include <windows.h>
 #include <WinUser.h>
 
@@ -13,7 +14,6 @@
 
 #include <vector>
 #include <string>
-
 using namespace std;
 
 /*
@@ -22,8 +22,8 @@ Hack it for now.
 */
 
 View v{ "Foot-to-Text" }; // This is super bad :'/
-// Note that due to this ^ if you try to run this process without the GUI open
-// it'll crash.
+						  // Note that due to this ^ if you try to run this process without the GUI open
+						  // it'll crash.
 
 void pretty_print2(vector<vector<string>> &vec, int cat, int p, bool i_c);
 void button_update();
@@ -123,6 +123,7 @@ void f1_press()
 	}
 	in_category = false;
 	phrase = 1;
+	
 	button_update();
 
 }
@@ -154,6 +155,7 @@ void f3_press()
 			--phrase;
 		}
 	}
+
 	button_update();
 }
 
@@ -171,28 +173,62 @@ void f4_press()
 	}
 	button_update();
 }
+void ArdInput() {
+	boost::asio::io_service io;
+	boost::asio::serial_port serial(io);
+	serial.open("COM3");
+	serial.set_option(boost::asio::serial_port_base::baud_rate(9600));
+	char c;
+	string input;
+	while (1)
+	{
+		boost::asio::read(serial, boost::asio::buffer(&c, 1));
+		if (c == '\n') {
+			c = input[0];
+			input = "";
+			switch (c) {
+			case 'b':
+				f1_press();
+				break;
+			case 'd':
+				f2_press();
+				break;
+			case 'u':
+				f3_press();
+				break;
+			case 's':
+				f4_press();
+				break;
+			}
+		}
+		else {
+			input += c;
+		}
+	}
 
+}
 HHOOK keypress_hook;
 LRESULT CALLBACK keypress_callback(int code, WPARAM wp, LPARAM lp)
 {
 	if (code == HC_ACTION && (wp == WM_SYSKEYDOWN || wp == WM_KEYDOWN)) {
 		KBDLLHOOKSTRUCT key_data = *((KBDLLHOOKSTRUCT*)lp);
 		DWORD virtual_key = key_data.vkCode;
-		
+
 		switch (virtual_key)
 		{
-			case VK_F1:
-				f1_press();
-				break;
-			case VK_F2:
-				f2_press();
-				break;
-			case VK_F3:
-				f3_press();
-				break;
-			case VK_F4:
-				f4_press();
-				break;
+		case VK_F1:
+			f1_press();
+			break;
+		case VK_F2:
+			f2_press();
+			break;
+		case VK_F3:
+			f3_press();
+			break;
+		case VK_F4:
+			cout << "F4\n";
+			f4_press();
+			break;
 		}
 	}
 
@@ -223,6 +259,7 @@ int main()
 	//set buttons to initial state
 	button_update();
 
+#ifndef OUR_ARDUINO
 	HINSTANCE module_handle = GetModuleHandle(NULL);
 	keypress_hook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)keypress_callback, module_handle, NULL);
 
@@ -232,7 +269,11 @@ int main()
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
+#else
+	ArdInput();
+#endif
 
 	// Exit normally
 	return 0;
 }
+

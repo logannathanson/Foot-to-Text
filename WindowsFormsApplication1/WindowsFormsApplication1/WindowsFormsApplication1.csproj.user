@@ -4,6 +4,6 @@
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartWorkingDirectory>C:\Users\andrew\Google Drive\Semester\eecs481\Foot-to-Text %28code%29\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Users\ecble\Desktop\Foot-to-Text\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>
