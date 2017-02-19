@@ -9,8 +9,8 @@ The keys correspond to the following actions:
 Button | Action Name | Description
 --- | --- | ---
 **F1** | Back | go to previous menu
-**F2** | Up | scroll up an option
-**F3** | Down | scroll down an option
+**F2** | Down | scroll up an option
+**F3** | Up | scroll down an option
 **F4** | Select | select the category of phrases, or if highlighting a text phrase, type the phrase in the current window
 
 ## Build and Run Instructions
