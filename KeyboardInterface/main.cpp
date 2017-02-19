@@ -1,5 +1,9 @@
 #define WINVER 0x0500
+
+#ifdef OUR_ARDUINO
 #include <boost/asio.hpp>
+#endif
+
 #include <windows.h>
 #include <WinUser.h>
 
@@ -173,6 +177,8 @@ void f4_press()
 	}
 	button_update();
 }
+
+#ifdef OUR_ARDUINO
 void ArdInput() {
 	boost::asio::io_service io;
 	boost::asio::serial_port serial(io);
@@ -207,6 +213,8 @@ void ArdInput() {
 	}
 
 }
+#endif
+
 HHOOK keypress_hook;
 LRESULT CALLBACK keypress_callback(int code, WPARAM wp, LPARAM lp)
 {
