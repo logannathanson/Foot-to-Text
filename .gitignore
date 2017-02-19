@@ -6,4 +6,9 @@ obj/
 *.opendb
 *.lib
 *.exp
-
+*.tlog
+*.log
+*.lastbuildstate
+*.ilk
+*.idb
+*.csproj.user
