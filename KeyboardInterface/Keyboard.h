@@ -9,9 +9,18 @@
 class Keyboard
 {
 public:
+	struct ModifierPkg
+	{
+		bool ctrl = false;
+		bool shift = false;
+		bool alt = false;
+	};
+
 	static Keyboard& get_instance();
 
 	void send_word(const std::string& word);
+
+	void send_shortcut(ModifierPkg mods, char key);
 
 private:
 	Keyboard();
@@ -28,9 +37,12 @@ private:
 	{
 	public:
 		ModifierGuard(SHORT vk_package);
+		ModifierGuard(ModifierPkg mods);
 		~ModifierGuard();
 
 	private:
+		void set_entry_state();
+
 		bool is_shift = false;
 		bool is_ctrl = false;
 		bool is_alt = false;

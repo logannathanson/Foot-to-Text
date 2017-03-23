@@ -16,6 +16,12 @@ void Keyboard::send_word(const std::string& word)
     }
 }
 
+void Keyboard::send_shortcut(ModifierPkg mods, char key)
+{
+    auto mod_guard = ModifierGuard {mods};
+    send_char(key);
+}
+
 Keyboard::Keyboard()
 {
     input.type = INPUT_KEYBOARD;
@@ -66,6 +72,19 @@ Keyboard::ModifierGuard::ModifierGuard(SHORT vk_package)
     : is_shift((vk_package & 0x100) != 0),
     is_ctrl((vk_package & 0x200) != 0),
     is_alt((vk_package & 0x400) != 0)
+{
+    set_entry_state();
+}
+
+Keyboard::ModifierGuard::ModifierGuard(ModifierPkg mods)
+    : is_shift(mods.shift),
+    is_ctrl(mods.ctrl),
+    is_alt(mods.alt)
+{
+    set_entry_state();
+}
+
+void Keyboard::ModifierGuard::set_entry_state()
 {
     if (is_shift) Keyboard::get_instance().send_key_down(VK_SHIFT);
     if (is_ctrl) Keyboard::get_instance().send_key_down(VK_CONTROL);
