@@ -3,45 +3,50 @@ General
 	bradeben
 	bradeben@umich.edu
 	University of Michigan
+	Go Blue!
 Aerospace
-	aerospace
-	engineering
-	flight vehicle
-	flight technology
-	rocket science
+	aircraft
+	spacecraft
+	pressure
+	structures
+	controls
 	propulsion
-	lift
-	drag
-	coefficient
+	orbit
+	fuel
+	angle
+	delta-v
+	yaw
+	pitch
+	roll
+	stress
+	strain
 Python
-	for i in range(n):
+	for i in range(n):\n
 	i = 0
 	print ''
 	l = []
 	d = {}
-	def function_name():
-	class class_name:
+	def function_name():\n
+	class class_name:\n
 C++
+	#include <iostream>\n#include <string>\n#include <vector>\n
+	using namespace std;\n
+	int main(){\n\n	return 0;\n}
+	for(int i = 0; i < n; ++i){\n\n}\n
+	if(){\n\n}\nelse{\n\n}\n
 	int i = 0;
-	for(int i = 0; i < n; ++i){}
-	if(){}else{}
-	#include <iostream>
-	#include <string>
-	using namespace std;
-	int main(){return 0;}
-	phrase22
+	cout << i;
 Email
-	Hello,
-	To whom it may concern,
+	Hello,\n
+	To whom it may concern,\n
 	Could you please let me know
 	I am writing to
 	Please see the attached file.
 	My name is Brad.
 	Thank you for your time.
 	I look forward to hearing from you.
-	Best,
-	Sincerely,
-	Brad
+	Best,\nBrad
+	Sincerely,\nBrad
 Keyboard Shortcuts
 	Ctrl+Alt+Del
 	Ctrl+C
