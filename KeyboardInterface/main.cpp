@@ -38,7 +38,26 @@ int category = 0;
 int phrase = 1;
 bool in_category = false;
 
+void newlines(vector<vector<string>>& phrases) {
+	for (int i = 0; i < phrases.size(); ++i) {
+		for (int j = 1; j < phrases[i].size(); ++j) {
+			for (auto k = phrases[i][j].begin(); k < phrases[i][j].end(); ++k) {
+				if (*k == '\\' && *(k + 1) == 'n') {
+					phrases[i][j].erase(k);
+					*k = '\n';
+				}
+				/*
+				if (phrases[i][j][k] == '\\' && phrases[i][j][k + 1] == 'n') {
+					phrases[i][j].erase(k, 1);
+					phrases[i][j][k] = '\n';
+				}
+				
+				*/
 
+			}
+		}
+	}
+}
 void button_update() {
 	if (!in_category) {
 		if (category + 4 < phrases.size()) {
@@ -252,7 +271,6 @@ int main()
 	string line = "";
 	int cat = -1;
 
-	v.set_button(1, "yo doawg");
 	while (getline(ifs, line)) {
 		if (line[0] != '\t') {
 			++cat;
@@ -265,6 +283,11 @@ int main()
 		}
 	}
 	//set buttons to initial state
+
+	//string newlines
+	//if you don't want to deal with newlines, just comment out this line and rebuild
+	newlines(phrases);
+
 	button_update();
 
 #ifndef OUR_ARDUINO
