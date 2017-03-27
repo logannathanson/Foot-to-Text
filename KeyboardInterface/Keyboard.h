@@ -49,5 +49,4 @@ private:
 	};
 
 	INPUT input;
-	HKL layout;
 };

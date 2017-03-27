@@ -28,8 +28,6 @@ Keyboard::Keyboard()
     input.ki.wScan = 0;
     input.ki.time = 0;
     input.ki.dwExtraInfo = 0;
-
-    layout = GetKeyboardLayout(0); // Locale of current thread
 }
 
 void Keyboard::send_char(char c)
@@ -59,7 +57,7 @@ void Keyboard::send_key_up(WORD virtual_key)
 
 SHORT Keyboard::get_virtual_key(char c)
 {
-    SHORT vk_package = VkKeyScanEx(c, layout);
+    SHORT vk_package = VkKeyScanEx(c, GetKeyboardLayout(0));
     if ((char)(vk_package & 0x00FF) == -1 && (char)(vk_package & 0xFF00) == -1)
     {
         throw std::runtime_error("Don't have virtual key for char " + std::to_string(c));
