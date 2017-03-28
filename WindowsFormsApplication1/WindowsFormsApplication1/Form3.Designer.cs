@@ -35,6 +35,10 @@
             this.buttonWidthMinus = new System.Windows.Forms.Button();
             this.textSizePlus = new System.Windows.Forms.Button();
             this.textSizeMinus = new System.Windows.Forms.Button();
+            this.buttonHeightMinus = new System.Windows.Forms.Button();
+            this.buttonHeightPlus = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -50,7 +54,7 @@
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(319, 68);
@@ -60,8 +64,8 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 200);
+            this.label3.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 334);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(319, 68);
             this.label3.TabIndex = 2;
@@ -69,49 +73,106 @@
             // 
             // buttonWidthPlus
             // 
+            this.buttonWidthPlus.BackColor = System.Drawing.Color.Bisque;
+            this.buttonWidthPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonWidthPlus.Location = new System.Drawing.Point(22, 137);
             this.buttonWidthPlus.Name = "buttonWidthPlus";
-            this.buttonWidthPlus.Size = new System.Drawing.Size(174, 37);
+            this.buttonWidthPlus.Size = new System.Drawing.Size(174, 62);
             this.buttonWidthPlus.TabIndex = 3;
             this.buttonWidthPlus.Text = "+";
-            this.buttonWidthPlus.UseVisualStyleBackColor = true;
+            this.buttonWidthPlus.UseVisualStyleBackColor = false;
             this.buttonWidthPlus.Click += new System.EventHandler(this.buttonWidthPlus_Click);
             // 
             // buttonWidthMinus
             // 
+            this.buttonWidthMinus.BackColor = System.Drawing.Color.Bisque;
+            this.buttonWidthMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonWidthMinus.Location = new System.Drawing.Point(224, 137);
             this.buttonWidthMinus.Name = "buttonWidthMinus";
-            this.buttonWidthMinus.Size = new System.Drawing.Size(159, 37);
+            this.buttonWidthMinus.Size = new System.Drawing.Size(159, 62);
             this.buttonWidthMinus.TabIndex = 4;
             this.buttonWidthMinus.Text = "-";
-            this.buttonWidthMinus.UseVisualStyleBackColor = true;
+            this.buttonWidthMinus.UseVisualStyleBackColor = false;
             this.buttonWidthMinus.Click += new System.EventHandler(this.buttonWidthMinus_Click);
             // 
             // textSizePlus
             // 
-            this.textSizePlus.Location = new System.Drawing.Point(22, 254);
+            this.textSizePlus.BackColor = System.Drawing.Color.Bisque;
+            this.textSizePlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textSizePlus.Location = new System.Drawing.Point(22, 384);
             this.textSizePlus.Name = "textSizePlus";
-            this.textSizePlus.Size = new System.Drawing.Size(174, 37);
+            this.textSizePlus.Size = new System.Drawing.Size(174, 74);
             this.textSizePlus.TabIndex = 5;
             this.textSizePlus.Text = "+";
-            this.textSizePlus.UseVisualStyleBackColor = true;
+            this.textSizePlus.UseVisualStyleBackColor = false;
             this.textSizePlus.Click += new System.EventHandler(this.textSizePlus_Click);
             // 
             // textSizeMinus
             // 
-            this.textSizeMinus.Location = new System.Drawing.Point(224, 254);
+            this.textSizeMinus.BackColor = System.Drawing.Color.Bisque;
+            this.textSizeMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textSizeMinus.Location = new System.Drawing.Point(224, 384);
             this.textSizeMinus.Name = "textSizeMinus";
-            this.textSizeMinus.Size = new System.Drawing.Size(170, 37);
+            this.textSizeMinus.Size = new System.Drawing.Size(170, 74);
             this.textSizeMinus.TabIndex = 6;
             this.textSizeMinus.Text = "-";
-            this.textSizeMinus.UseVisualStyleBackColor = true;
+            this.textSizeMinus.UseVisualStyleBackColor = false;
             this.textSizeMinus.Click += new System.EventHandler(this.textSizeMinus_Click);
+            // 
+            // buttonHeightMinus
+            // 
+            this.buttonHeightMinus.BackColor = System.Drawing.Color.Bisque;
+            this.buttonHeightMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHeightMinus.Location = new System.Drawing.Point(224, 264);
+            this.buttonHeightMinus.Name = "buttonHeightMinus";
+            this.buttonHeightMinus.Size = new System.Drawing.Size(159, 67);
+            this.buttonHeightMinus.TabIndex = 9;
+            this.buttonHeightMinus.Text = "-";
+            this.buttonHeightMinus.UseVisualStyleBackColor = false;
+            this.buttonHeightMinus.Click += new System.EventHandler(this.buttonHeightMinus_Click);
+            // 
+            // buttonHeightPlus
+            // 
+            this.buttonHeightPlus.BackColor = System.Drawing.Color.Bisque;
+            this.buttonHeightPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHeightPlus.Location = new System.Drawing.Point(22, 264);
+            this.buttonHeightPlus.Name = "buttonHeightPlus";
+            this.buttonHeightPlus.Size = new System.Drawing.Size(174, 67);
+            this.buttonHeightPlus.TabIndex = 8;
+            this.buttonHeightPlus.Text = "+";
+            this.buttonHeightPlus.UseVisualStyleBackColor = false;
+            this.buttonHeightPlus.Click += new System.EventHandler(this.buttonHeightPlus_Click);
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(12, 202);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(319, 68);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Button Height:";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Bisque;
+            this.button1.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(22, 473);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(372, 97);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Close Settings";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 447);
+            this.ClientSize = new System.Drawing.Size(406, 582);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonHeightMinus);
+            this.Controls.Add(this.buttonHeightPlus);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textSizeMinus);
             this.Controls.Add(this.textSizePlus);
             this.Controls.Add(this.buttonWidthMinus);
@@ -135,5 +196,9 @@
         private System.Windows.Forms.Button buttonWidthMinus;
         private System.Windows.Forms.Button textSizePlus;
         private System.Windows.Forms.Button textSizeMinus;
+        private System.Windows.Forms.Button buttonHeightMinus;
+        private System.Windows.Forms.Button buttonHeightPlus;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }

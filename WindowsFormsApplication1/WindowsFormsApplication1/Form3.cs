@@ -19,6 +19,8 @@ namespace WindowsFormsApplication1
         public event ClickButton ButtonWidthMinusWasClicked;
         public event ClickButton TextSizePlusWasClicked;
         public event ClickButton TextSizeMinusWasClicked;
+        public event ClickButton ButtonHeightPlusWasClicked;
+        public event ClickButton ButtonHeightMinusWasClicked;
 
 
         public Form3()
@@ -51,6 +53,16 @@ namespace WindowsFormsApplication1
             ButtonWidthMinusWasClicked();
         }
 
+        private void buttonHeightPlus_Click(object sender, EventArgs e)
+        {
+            ButtonHeightPlusWasClicked();
+        }
+
+        private void buttonHeightMinus_Click(object sender, EventArgs e)
+        {
+            ButtonHeightMinusWasClicked();
+        }
+
         private void textSizePlus_Click(object sender, EventArgs e)
         {
             TextSizePlusWasClicked();
@@ -59,6 +71,12 @@ namespace WindowsFormsApplication1
         private void textSizeMinus_Click(object sender, EventArgs e)
         {
             TextSizeMinusWasClicked();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Close Settings button
+            this.Close();
         }
     }
 }

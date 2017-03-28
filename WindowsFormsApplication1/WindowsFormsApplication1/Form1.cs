@@ -29,8 +29,9 @@ namespace WindowsFormsApplication1
 
         private const int WM_COPYDATA = 0x004A;
 
-        Color defaultColor = Color.Linen;
-        Color highlightedColor = Color.LightSlateGray;
+        Color defaultColor = Color.Bisque;
+        Color highlightedColor = Color.DimGray;
+
 
 
         private enum MessageType
@@ -44,12 +45,18 @@ namespace WindowsFormsApplication1
 
         private Form3 frm3;
 
+        public object ApplicationFormStatus { get; private set; }
 
         public Form1()
         {
+            this.TopLevel = true;
+            this.TopMost = true;
+            
+
             InitializeComponent();
             Shown += new EventHandler(Form_Shown);
             FormClosing += new FormClosingEventHandler(Form_Closing);
+
         }
 
         private void Form1_Resize(object sender, System.EventArgs e)
@@ -81,11 +88,22 @@ namespace WindowsFormsApplication1
             this.Width -= 10;
         }
 
+        void formB_ButtonHeightPlusWasClicked()
+        {
+            this.Height += 10;
+
+        }
+
+        void formB_ButtonHeightMinusWasClicked()
+        {
+            this.Height -= 10;
+        }
+
         void formB_TextSizePlusWasClicked()
         {
             float currentSize = button1.Font.Size;
             int nextSize = (int)currentSize + 1;
-            button1.Font = new Font("Microsoft Sans Serif", nextSize, FontStyle.Regular);
+            button1.Font = new Font("Franklin Gothic Medium", nextSize, FontStyle.Bold);
             button2.Font = button1.Font;
             button3.Font = button1.Font;
             button4.Font = button1.Font;
@@ -98,7 +116,7 @@ namespace WindowsFormsApplication1
             float currentSize = button1.Font.Size;
             int nextSize = (int)currentSize - 1;
             if (nextSize < 1) nextSize = 1;
-            button1.Font = new Font("Microsoft Sans Serif", nextSize, FontStyle.Regular);
+            button1.Font = new Font("Franklin Gothic Medium", nextSize, FontStyle.Bold);
             button2.Font = button1.Font;
             button3.Font = button1.Font;
             button4.Font = button1.Font;
@@ -205,12 +223,20 @@ namespace WindowsFormsApplication1
 
         private void button5_Click(object sender, EventArgs e)
         {
+            Debug.WriteLine(Application.OpenForms.Count);
+
+            if (Application.OpenForms.Count > 1)
+            {
+                Application.OpenForms[1].Close();
+            }
+
             frm3 = new Form3();
             frm3.ButtonWidthPlusWasClicked += new Form3.ClickButton(formB_ButtonWidthPlusWasClicked);
             frm3.ButtonWidthMinusWasClicked += new Form3.ClickButton(formB_ButtonWidthMinusWasClicked);
             frm3.TextSizePlusWasClicked += new Form3.ClickButton(formB_TextSizePlusWasClicked);
             frm3.TextSizeMinusWasClicked += new Form3.ClickButton(formB_TextSizeMinusWasClicked);
-
+            frm3.ButtonHeightPlusWasClicked += new Form3.ClickButton(formB_ButtonHeightPlusWasClicked);
+            frm3.ButtonHeightMinusWasClicked += new Form3.ClickButton(formB_ButtonHeightMinusWasClicked);
             frm3.Show();
         }
     }
