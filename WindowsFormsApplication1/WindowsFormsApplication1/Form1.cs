@@ -20,6 +20,8 @@ struct COPYDATASTRUCT
 }
 
 
+
+
 namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
@@ -61,6 +63,7 @@ namespace WindowsFormsApplication1
 
         void resizeAll()
         {
+            //Decrease size if too large
             while (button1.PreferredSize.Width > button1.Width || button1.PreferredSize.Height > button1.Height)
             {
                 button1.Font = new Font("Franklin Gothic Medium", button1.Font.Size - 1, FontStyle.Bold);
@@ -81,6 +84,31 @@ namespace WindowsFormsApplication1
             {
                 button5.Font = new Font("Franklin Gothic Medium", button5.Font.Size - 1, FontStyle.Bold);
             }
+
+            //Increase size if too small
+            while (button1.PreferredSize.Width + 10 < button1.Width && button1.PreferredSize.Height + 10 < button1.Height)
+            {
+                button1.Font = new Font("Franklin Gothic Medium", button1.Font.Size + 1, FontStyle.Bold);
+            }
+            while (button2.PreferredSize.Width + 10 < button2.Width && button2.PreferredSize.Height + 10 < button2.Height)
+            {
+                button2.Font = new Font("Franklin Gothic Medium", button2.Font.Size + 1, FontStyle.Bold);
+            }
+            while (button3.PreferredSize.Width + 10 < button3.Width && button3.PreferredSize.Height + 10 < button3.Height)
+            {
+                button3.Font = new Font("Franklin Gothic Medium", button3.Font.Size + 1, FontStyle.Bold);
+            }
+            while (button4.PreferredSize.Width + 10 < button4.Width && button4.PreferredSize.Height + 10 < button4.Height)
+            {
+                button4.Font = new Font("Franklin Gothic Medium", button4.Font.Size + 1, FontStyle.Bold);
+            }
+            while (button5.PreferredSize.Width + 10 < button5.Width && button5.PreferredSize.Height + 10 < button5.Height)
+            {
+                button5.Font = new Font("Franklin Gothic Medium", button5.Font.Size + 1, FontStyle.Bold);
+            }
+
+            Debug.WriteLine(button4.PreferredSize);
+            Debug.WriteLine(button4.Size);
         }
 
         private void Form1_Resize(object sender, System.EventArgs e)
@@ -213,19 +241,24 @@ namespace WindowsFormsApplication1
                     var msg = data.dwData;
                     var str = Marshal.PtrToStringAnsi(data.lpData);
 
+
                     switch ((MessageType) msg)
                     {
                         case MessageType.option1Text:
                             button1.Text = str;
+                            resizeAll();
                             break;
                         case MessageType.option2Text:
                             button2.Text = str;
+                            resizeAll();
                             break;
                         case MessageType.option3Text:
                             button3.Text = str;
+                            resizeAll();
                             break;
                         case MessageType.option4Text:
                             button4.Text = str;
+                            resizeAll();
                             break;
                         case MessageType.option5Text:
                             setHighlightedButton(str);
@@ -234,6 +267,7 @@ namespace WindowsFormsApplication1
                     }
                     break;
             }
+
             base.WndProc(ref m);
         }
 
