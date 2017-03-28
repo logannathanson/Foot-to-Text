@@ -59,6 +59,30 @@ namespace WindowsFormsApplication1
 
         }
 
+        void resizeAll()
+        {
+            while (button1.PreferredSize.Width > button1.Width || button1.PreferredSize.Height > button1.Height)
+            {
+                button1.Font = new Font("Franklin Gothic Medium", button1.Font.Size - 1, FontStyle.Bold);
+            }
+            while (button2.PreferredSize.Width > button2.Width || button2.PreferredSize.Height > button2.Height)
+            {
+                button2.Font = new Font("Franklin Gothic Medium", button2.Font.Size - 1, FontStyle.Bold);
+            }
+            while (button3.PreferredSize.Width > button3.Width || button3.PreferredSize.Height > button3.Height)
+            {
+                button3.Font = new Font("Franklin Gothic Medium", button3.Font.Size - 1, FontStyle.Bold);
+            }
+            while (button4.PreferredSize.Width > button4.Width || button4.PreferredSize.Height > button4.Height)
+            {
+                button4.Font = new Font("Franklin Gothic Medium", button4.Font.Size - 1, FontStyle.Bold);
+            }
+            while (button5.PreferredSize.Width > button5.Width || button5.PreferredSize.Height > button5.Height)
+            {
+                button5.Font = new Font("Franklin Gothic Medium", button5.Font.Size - 1, FontStyle.Bold);
+            }
+        }
+
         private void Form1_Resize(object sender, System.EventArgs e)
         {
                 button1.Height = (this.Height / 5) - 20;
@@ -75,32 +99,39 @@ namespace WindowsFormsApplication1
             button3.Location = new Point(button1.Location.X, button2.Location.Y + button1.Height + 10);
             button4.Location = new Point(button1.Location.X, button3.Location.Y + button1.Height + 10);
             button5.Location = new Point(button1.Location.X, button4.Location.Y + button1.Height + 10);
+
+            resizeAll();
         }
 
         void formB_ButtonWidthPlusWasClicked()
         {
             this.Width += 10;
+            resizeAll();
             
         }
 
         void formB_ButtonWidthMinusWasClicked()
         {
             this.Width -= 10;
+            resizeAll();
         }
 
         void formB_ButtonHeightPlusWasClicked()
         {
             this.Height += 10;
+            resizeAll();
 
         }
 
         void formB_ButtonHeightMinusWasClicked()
         {
             this.Height -= 10;
+            resizeAll();
         }
 
         void formB_TextSizePlusWasClicked()
         {
+
             float currentSize = button1.Font.Size;
             int nextSize = (int)currentSize + 1;
             button1.Font = new Font("Franklin Gothic Medium", nextSize, FontStyle.Bold);
@@ -108,6 +139,8 @@ namespace WindowsFormsApplication1
             button3.Font = button1.Font;
             button4.Font = button1.Font;
             button5.Font = button1.Font;
+            resizeAll();
+            
 
         }
 
@@ -121,6 +154,7 @@ namespace WindowsFormsApplication1
             button3.Font = button1.Font;
             button4.Font = button1.Font;
             button5.Font = button1.Font;
+            resizeAll();
 
         }
 
@@ -163,6 +197,8 @@ namespace WindowsFormsApplication1
                     button4.BackColor = highlightedColor;
                     break;
             }
+
+            resizeAll();
         }
 
         [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
@@ -238,6 +274,7 @@ namespace WindowsFormsApplication1
             frm3.ButtonHeightPlusWasClicked += new Form3.ClickButton(formB_ButtonHeightPlusWasClicked);
             frm3.ButtonHeightMinusWasClicked += new Form3.ClickButton(formB_ButtonHeightMinusWasClicked);
             frm3.Show();
+            resizeAll();
         }
     }
 }
