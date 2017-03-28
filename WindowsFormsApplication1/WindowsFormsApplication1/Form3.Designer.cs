@@ -181,7 +181,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "Settings";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
 
