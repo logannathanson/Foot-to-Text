@@ -6,15 +6,16 @@
 
 #include <string>
 
+struct ModifierPkg
+{
+	bool ctrl = false;
+	bool shift = false;
+	bool alt = false;
+};
+
 class Keyboard
 {
 public:
-	struct ModifierPkg
-	{
-		bool ctrl = false;
-		bool shift = false;
-		bool alt = false;
-	};
 
 	static Keyboard& get_instance();
 
