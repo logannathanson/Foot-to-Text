@@ -48,8 +48,7 @@ Email
 	Best,\nBrad
 	Sincerely,\nBrad
 Keyboard Shortcuts
-	Ctrl+Alt+Del
-	Ctrl+C
-	Ctrl+V
-	Ctrl+Tab
-	Alt+Tab
+	Ctrl+c
+	Ctrl+v
+	Ctrl+a
+	Ctrl+f

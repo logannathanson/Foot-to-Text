@@ -192,7 +192,31 @@ void f4_press()
 
 	else
 	{
-		Keyboard::get_instance().send_word(phrases[category][phrase]);
+		// Decide if it's a keyboard shortcut we're sending
+		const auto& word = phrases[category][phrase];
+		if (word.find("Ctrl") != std::string::npos || word.find("Alt") != std::string::npos)
+		{
+			auto mods = ModifierPkg{};
+			if (word.find("Ctrl") != std::string::npos)
+			{
+				mods.ctrl = true;
+			}
+
+			if (word.find("Alt") != std::string::npos)
+			{
+				mods.alt = true;
+			}
+
+			// Can only have the format Ctrl+Alt+[char] etc.
+			// I.e. the last character has to be single letter
+			char letter = word.back();
+
+			Keyboard::get_instance().send_shortcut(mods, letter);
+		}
+		else
+		{
+			Keyboard::get_instance().send_word(phrases[category][phrase]);
+		}
 	}
 	button_update();
 }
@@ -272,6 +296,7 @@ int main()
 	int cat = -1;
 
 	while (getline(ifs, line)) {
+		cout << line << endl;
 		if (line[0] != '\t') {
 			++cat;
 			phrases.push_back(vector<string>());
@@ -283,6 +308,10 @@ int main()
 		}
 	}
 	//set buttons to initial state
+
+	for (auto& i : phrases) {
+		for (auto& j : i) cout << j << endl;
+	}
 
 	//string newlines
 	//if you don't want to deal with newlines, just comment out this line and rebuild
