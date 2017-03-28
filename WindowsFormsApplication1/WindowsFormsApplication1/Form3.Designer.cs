@@ -43,7 +43,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(77, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(254, 68);
@@ -70,6 +70,7 @@
             this.label3.Size = new System.Drawing.Size(319, 68);
             this.label3.TabIndex = 2;
             this.label3.Text = "Text Size:";
+            this.label3.Visible = false;
             // 
             // buttonWidthPlus
             // 
@@ -105,6 +106,7 @@
             this.textSizePlus.TabIndex = 5;
             this.textSizePlus.Text = "+";
             this.textSizePlus.UseVisualStyleBackColor = false;
+            this.textSizePlus.Visible = false;
             this.textSizePlus.Click += new System.EventHandler(this.textSizePlus_Click);
             // 
             // textSizeMinus
@@ -117,6 +119,7 @@
             this.textSizeMinus.TabIndex = 6;
             this.textSizeMinus.Text = "-";
             this.textSizeMinus.UseVisualStyleBackColor = false;
+            this.textSizeMinus.Visible = false;
             this.textSizeMinus.Click += new System.EventHandler(this.textSizeMinus_Click);
             // 
             // buttonHeightMinus
@@ -155,10 +158,10 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Bisque;
-            this.button1.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(22, 473);
+            this.button1.Font = new System.Drawing.Font("Franklin Gothic Medium", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(22, 361);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(372, 97);
+            this.button1.Size = new System.Drawing.Size(361, 97);
             this.button1.TabIndex = 10;
             this.button1.Text = "Close Settings";
             this.button1.UseVisualStyleBackColor = false;
@@ -168,7 +171,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 582);
+            this.ClientSize = new System.Drawing.Size(406, 465);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonHeightMinus);
             this.Controls.Add(this.buttonHeightPlus);
