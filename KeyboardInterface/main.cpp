@@ -46,18 +46,11 @@ void newlines(vector<vector<string>>& phrases) {
 					phrases[i][j].erase(k);
 					*k = '\n';
 				}
-				/*
-				if (phrases[i][j][k] == '\\' && phrases[i][j][k + 1] == 'n') {
-					phrases[i][j].erase(k, 1);
-					phrases[i][j][k] = '\n';
-				}
-				
-				*/
-
 			}
 		}
 	}
 }
+
 void button_update() {
 	if (!in_category) {
 		if (category + 4 < phrases.size()) {
@@ -297,16 +290,27 @@ int main()
 
 	while (getline(ifs, line)) {
 		cout << line << endl;
+		//new category
 		if (line[0] != '\t') {
 			++cat;
 			phrases.push_back(vector<string>());
 			phrases[cat].push_back(line);
 		}
+		//new phrase
 		else {
 			//remove initial tab character
 			phrases[cat].push_back(line.erase(0, 1));
 		}
 	}
+
+
+	for (int i = 0; i < phrases.size(); ++i) {
+		while (phrases[i].size() < 5) {
+			phrases[i].push_back("empty");//GUI crashes when I set to empty string
+		}
+	}
+
+
 	//set buttons to initial state
 
 	for (auto& i : phrases) {
