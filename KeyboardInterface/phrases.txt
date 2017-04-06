@@ -50,5 +50,7 @@ Email
 Keyboard Shortcuts
 	Ctrl+c
 	Ctrl+v
-	Ctrl+a
-	Ctrl+f
+	Alt+Tab
+	Alt+Esc
+	Ctrl+Tab
+	Ctrl+Shift+t

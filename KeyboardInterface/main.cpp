@@ -18,6 +18,7 @@
 
 #include <vector>
 #include <string>
+#include <cassert>
 using namespace std;
 
 /*
@@ -194,8 +195,14 @@ void f4_press()
 	{
 		// Decide if it's a keyboard shortcut we're sending
 		const auto& word = phrases[category][phrase];
-		if (word.find("Ctrl") != std::string::npos || word.find("Alt") != std::string::npos)
+		if (word.find("Ctrl") != std::string::npos
+			|| word.find("Alt") != std::string::npos
+			|| word.find("Shift") != std::string::npos)
 		{
+			// Assumptions: the keyboard shortcut is formatted to start with
+			// Ctrl, Alt, and/or Shift, separated by dashes, followed by
+			// a letter or one of [Del,Tab,Esc]
+
 			auto mods = ModifierPkg{};
 			if (word.find("Ctrl") != std::string::npos)
 			{
@@ -207,11 +214,20 @@ void f4_press()
 				mods.alt = true;
 			}
 
-			// Can only have the format Ctrl+Alt+[char] etc.
-			// I.e. the last character has to be single letter
-			char letter = word.back();
+			if (word.find("Shift") != std::string::npos)
+			{
+				mods.shift = true;
+			}
 
-			Keyboard::get_instance().send_shortcut(mods, letter);
+			// The rest of the sequence: must be either a single letter,
+			// or one of "Tab", "Del", or "Esc", case-insensitive
+			int pos = word.find_last_of('+');
+			assert(pos < (word.size() - 1) && "Shortcut string not well formatted");
+
+			std::string key = word.substr(pos + 1);
+			Keyboard::Key keyboard_input(key);
+
+			Keyboard::get_instance().send_shortcut(mods, keyboard_input);
 		}
 		else
 		{

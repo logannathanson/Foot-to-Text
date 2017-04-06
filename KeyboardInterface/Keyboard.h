@@ -16,17 +16,26 @@ struct ModifierPkg
 class Keyboard
 {
 public:
+	struct Key
+	{
+		Key(const std::string& key_str);
+		friend class Keyboard;
+
+	private:
+		SHORT virtual_key;
+	};
 
 	static Keyboard& get_instance();
 
 	void send_word(const std::string& word);
 
-	void send_shortcut(ModifierPkg mods, char key);
+	void send_shortcut(ModifierPkg mods, Key key);
 
 private:
 	Keyboard();
 
 	void send_char(char c);
+	void send_key(Key k);
 	
     void send_key_down(WORD virtual_key);
 	

@@ -1,6 +1,41 @@
 #include "Keyboard.h"
 
 #include <stdexcept>
+#include <cctype>
+#include <algorithm>
+
+Keyboard::Key::Key(const std::string& key_str)
+{
+	if (key_str.size() == 1)
+	{
+		// This is a regular old letter
+		char c = key_str[0];
+		c = tolower(c); // Turn to lowercase for the keyboard
+
+		virtual_key = Keyboard::get_instance().get_virtual_key(key_str[0]);
+		return;
+	}
+
+	// We have a "special" key: Del, Tab, Esc
+	
+	// Lowercase the input string
+	std::string formatted = key_str;
+	std::transform(formatted.begin(), formatted.end(), formatted.begin(), ::tolower);
+	
+	// Dispatch the virtual key based on the type
+	if (formatted == "del")
+	{
+		virtual_key = VK_DELETE;
+	}
+	else if (formatted == "tab")
+	{
+		virtual_key = VK_TAB;
+	}
+	else if (formatted == "esc")
+	{
+		virtual_key = VK_ESCAPE;
+	}
+}
 
 Keyboard& Keyboard::get_instance()
 {
@@ -16,10 +51,12 @@ void Keyboard::send_word(const std::string& word)
     }
 }
 
-void Keyboard::send_shortcut(ModifierPkg mods, char key)
+void Keyboard::send_shortcut(ModifierPkg mods, Key key)
 {
     auto mod_guard = ModifierGuard {mods};
-    send_char(key);
+	
+	send_key_down(static_cast<WORD>(key.virtual_key));
+	send_key_up(static_cast<WORD>(key.virtual_key));
 }
 
 Keyboard::Keyboard()
