@@ -31,8 +31,10 @@ namespace WindowsFormsApplication1
 
         private const int WM_COPYDATA = 0x004A;
 
-        Color defaultColor = Color.Bisque;
-        Color highlightedColor = Color.DimGray;
+        Color defaultColor = Color.Transparent;
+        Color highlightedColor = Color.Cyan;
+
+        string currentHighlightedButton = "1";
 
 
 
@@ -157,6 +159,53 @@ namespace WindowsFormsApplication1
             resizeAll();
         }
 
+        void formB_ChangeColor(Color newColor)
+        {
+            defaultColor = newColor;
+            button1.BackColor = defaultColor;
+            button2.BackColor = defaultColor;
+            button3.BackColor = defaultColor;
+            button4.BackColor = defaultColor;
+            button5.BackColor = defaultColor;
+
+            switch(currentHighlightedButton)
+            {
+                case "1":
+                    button1.BackColor = highlightedColor;
+                    break;
+                case "2":
+                    button2.BackColor = highlightedColor;
+                    break;
+                case "3":
+                    button3.BackColor = highlightedColor;
+                    break;
+                case "4":
+                    button4.BackColor = highlightedColor;
+                    break;
+            }
+        }
+
+        void formB_ChangeHighlightedColor(Color newColor)
+        {
+            highlightedColor = newColor;
+
+            switch (currentHighlightedButton)
+            {
+                case "1":
+                    button1.BackColor = highlightedColor;
+                    break;
+                case "2":
+                    button2.BackColor = highlightedColor;
+                    break;
+                case "3":
+                    button3.BackColor = highlightedColor;
+                    break;
+                case "4":
+                    button4.BackColor = highlightedColor;
+                    break;
+            }
+        }
+
         void formB_TextSizePlusWasClicked()
         {
 
@@ -209,6 +258,8 @@ namespace WindowsFormsApplication1
             button2.BackColor = defaultColor;
             button3.BackColor = defaultColor;
             button4.BackColor = defaultColor;
+            button5.BackColor = defaultColor;
+            currentHighlightedButton = str;
 
             switch (str)
             {
@@ -307,6 +358,9 @@ namespace WindowsFormsApplication1
             frm3.TextSizeMinusWasClicked += new Form3.ClickButton(formB_TextSizeMinusWasClicked);
             frm3.ButtonHeightPlusWasClicked += new Form3.ClickButton(formB_ButtonHeightPlusWasClicked);
             frm3.ButtonHeightMinusWasClicked += new Form3.ClickButton(formB_ButtonHeightMinusWasClicked);
+            frm3.ChangeButtonColor += new Form3.ChangeColor(formB_ChangeColor);
+            frm3.ChangeHighlightedColor += new Form3.ChangeColor(formB_ChangeHighlightedColor);
+
             frm3.Show();
             resizeAll();
         }
