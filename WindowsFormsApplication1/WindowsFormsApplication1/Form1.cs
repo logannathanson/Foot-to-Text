@@ -66,23 +66,23 @@ namespace WindowsFormsApplication1
         void resizeAll()
         {
             //Decrease size if too large
-            while (button1.PreferredSize.Width > button1.Width || button1.PreferredSize.Height > button1.Height)
+            while (button1.PreferredSize.Width > button1.Width || button1.PreferredSize.Height > button1.Height && button1.Font.Size > 1)
             {
                 button1.Font = new Font("Franklin Gothic Medium", button1.Font.Size - 1, FontStyle.Bold);
             }
-            while (button2.PreferredSize.Width > button2.Width || button2.PreferredSize.Height > button2.Height)
+            while (button2.PreferredSize.Width > button2.Width || button2.PreferredSize.Height > button2.Height && button2.Font.Size > 1)
             {
                 button2.Font = new Font("Franklin Gothic Medium", button2.Font.Size - 1, FontStyle.Bold);
             }
-            while (button3.PreferredSize.Width > button3.Width || button3.PreferredSize.Height > button3.Height)
+            while (button3.PreferredSize.Width > button3.Width || button3.PreferredSize.Height > button3.Height && button3.Font.Size > 1)
             {
                 button3.Font = new Font("Franklin Gothic Medium", button3.Font.Size - 1, FontStyle.Bold);
             }
-            while (button4.PreferredSize.Width > button4.Width || button4.PreferredSize.Height > button4.Height)
+            while (button4.PreferredSize.Width > button4.Width || button4.PreferredSize.Height > button4.Height && button4.Font.Size > 1)
             {
                 button4.Font = new Font("Franklin Gothic Medium", button4.Font.Size - 1, FontStyle.Bold);
             }
-            while (button5.PreferredSize.Width > button5.Width || button5.PreferredSize.Height > button5.Height)
+            while (button5.PreferredSize.Width > button5.Width || button5.PreferredSize.Height > button5.Height && button5.Font.Size > 1)
             {
                 button5.Font = new Font("Franklin Gothic Medium", button5.Font.Size - 1, FontStyle.Bold);
             }

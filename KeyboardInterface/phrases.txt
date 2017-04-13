@@ -59,8 +59,3 @@ Keyboard Shortcuts
 	1 Alt+Esc
 	1 Ctrl+Tab
 	1 Ctrl+Shift+t
-Empty
-	-1000000 empty
-	-1000000 empty
-	-1000000 empty
-	-1000000 empty
