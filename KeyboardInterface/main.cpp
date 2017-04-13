@@ -10,6 +10,7 @@
 #include "Keyboard.h"
 #include "View.h"
 
+
 #include <iostream>
 #include <string>
 #include <stdexcept>
@@ -19,6 +20,10 @@
 #include <vector>
 #include <string>
 #include <cassert>
+#include <algorithm>
+
+
+
 using namespace std;
 
 /*
@@ -30,21 +35,57 @@ View v{ "Foot-to-Text" }; // This is super bad :'/
 						  // Note that due to this ^ if you try to run this process without the GUI open
 						  // it'll crash.
 
-void pretty_print2(vector<vector<string>> &vec, int cat, int p, bool i_c);
 void button_update();
 
+class Phrase {
+	public:
+		string s;
+		string original;
+		int c;
+		Phrase(string in_string, int in_count) {
+			s = in_string;
+			c = in_count;
+			original = in_string;
+		}
+		bool operator < (const Phrase& p) const {
+			return c > p.c;
+		}
+};
+
+
 //TODO: fix global vars?
-vector<vector<string>> phrases;
+vector<vector<Phrase>> phrases;
+vector<string> comments;
 int category = 0;
 int phrase = 1;
 bool in_category = false;
 
-void newlines(vector<vector<string>>& phrases) {
+//call this function to save the file upon exit
+void save_file(vector<vector<Phrase>>& phrases, vector<string>& comments, string filename) {
+	ofstream myfile;
+	myfile.open(filename);
+	for (int i = 0; i < comments.size(); ++i) {
+		myfile << comments[i] << endl;
+	}
+	for (int cat = 0; cat < phrases.size(); ++cat) {
+		for (int phrase = 0; phrase < phrases[cat].size(); ++phrase) {
+			if (phrase == 0) {
+				myfile << phrases[cat][phrase].s << endl;
+			}
+			else {
+				myfile << "\t" << phrases[cat][phrase].c << " " << phrases[cat][phrase].original << endl;
+			}
+		}
+	}
+	myfile.close();
+}
+
+void newlines(vector<vector<Phrase>>& phrases) {
 	for (int i = 0; i < phrases.size(); ++i) {
 		for (int j = 1; j < phrases[i].size(); ++j) {
-			for (auto k = phrases[i][j].begin(); k < phrases[i][j].end(); ++k) {
+			for (auto k = (phrases[i][j].s).begin(); k < (phrases[i][j].s).end(); ++k) {
 				if (*k == '\\' && *(k + 1) == 'n') {
-					phrases[i][j].erase(k);
+					(phrases[i][j].s).erase(k);
 					*k = '\n';
 				}
 			}
@@ -58,7 +99,7 @@ void button_update() {
 			//highlight button1
 			v.set_button(5, "1");
 			for (unsigned int i = category, b = 1; i < category + 4; ++i, ++b) {
-				v.set_button(b, phrases[i][0]);
+				v.set_button(b, phrases[i][0].s);
 			}
 		}
 		else {
@@ -68,7 +109,7 @@ void button_update() {
 					string button = to_string(b);
 					v.set_button(5, button);
 				}
-				v.set_button(b, phrases[i][0]);
+				v.set_button(b, phrases[i][0].s);
 			}
 		}
 	}
@@ -77,7 +118,7 @@ void button_update() {
 			//highlight button 1
 			v.set_button(5, "1");
 			for (unsigned int i = phrase, b = 1; i < phrase + 4; ++i, ++b) {
-				v.set_button(b, phrases[category][i]);
+				v.set_button(b, phrases[category][i].s);
 			}
 		}
 		else {
@@ -87,50 +128,10 @@ void button_update() {
 					string button = to_string(b);
 					v.set_button(5, button);
 				}
-				v.set_button(b, phrases[category][i]);
+				v.set_button(b, phrases[category][i].s);
 			}
 		}
 	}
-	pretty_print2(phrases, category, phrase, in_category);
-}
-
-//TODO: remove pretty_print
-void pretty_print2(vector<vector<string>> &vec, int cat, int p, bool i_c) {
-	cout << endl;
-	if (!i_c) {
-		if (cat + 4 < vec.size()) {
-			cout << "> ";
-			for (int i = cat; i < cat + 4; ++i) {
-				cout << vec[i][0] << endl;
-			}
-		}
-		else {
-			for (int i = vec.size() - 4; i < vec.size(); ++i) {
-				if (i == cat) {
-					cout << "> ";
-				}
-				cout << vec[i][0] << endl;
-			}
-		}
-	}
-	else {
-		if (p + 4 < vec[cat].size()) {
-			cout << "> ";
-			for (int i = p; i < p + 4; ++i) {
-				cout << vec[cat][i] << endl;
-			}
-		}
-		else {
-			for (int i = vec[cat].size() - 4; i < vec[cat].size(); ++i) {
-				if (i == p) {
-					cout << "> ";
-				}
-				cout << vec[cat][i] << endl;
-			}
-		}
-	}
-
-	cout << endl;
 }
 
 void f1_press()
@@ -187,7 +188,20 @@ void f4_press()
 	else
 	{
 		// Decide if it's a keyboard shortcut we're sending
-		const auto& word = phrases[category][phrase];
+		const auto& word = phrases[category][phrase].s;
+		++phrases[category][phrase].c; //increment current count
+		if (phrase - 1 > 0){
+			if (phrases[category][phrase].c > phrases[category][phrase - 1].c) {
+				//swap if the phrase's priority increases
+				string temp_s = phrases[category][phrase].s;
+				int temp_c = phrases[category][phrase].c;
+				phrases[category][phrase].s = phrases[category][phrase - 1].s;
+				phrases[category][phrase].c = phrases[category][phrase - 1].c;
+				phrases[category][phrase - 1].s = temp_s;
+				phrases[category][phrase - 1].c = temp_c;
+				phrase -= 1;
+			}
+		}
 		if (word.find("Ctrl") != std::string::npos
 			|| word.find("Alt") != std::string::npos
 			|| word.find("Shift") != std::string::npos)
@@ -224,10 +238,12 @@ void f4_press()
 		}
 		else
 		{
-			Keyboard::get_instance().send_word(phrases[category][phrase]);
+			Keyboard::get_instance().send_word(phrases[category][phrase].s);
 		}
 	}
 	button_update();
+	//right now the file saves every time the select button is pressed
+	save_file(phrases, comments, "..\\..\\..\\..\\KeyboardInterface\\phrases.txt");
 }
 
 #ifdef OUR_ARDUINO
@@ -303,37 +319,40 @@ int main()
 	ifstream ifs(filename);
 	string line = "";
 	int cat = -1;
-
+	
+	//read in phrases file
 	while (getline(ifs, line)) {
 		cout << line << endl;
 		//new category
-		if (line[0] != '\t') {
-			++cat;
-			phrases.push_back(vector<string>());
-			phrases[cat].push_back(line);
+		if (line[0] == '#') {
+			comments.push_back(line);
 		}
-		//new phrase
-		else {
+		else if (line[0] == '\t') {
 			//remove initial tab character
-			phrases[cat].push_back(line.erase(0, 1));
+			size_t space = line.find_first_of(" ");
+			string s = line.substr(space).erase(0, 1);
+			int c = atoi(line.substr(0, space).c_str());
+			phrases[cat].push_back(Phrase(s, c));
+		}
+		else {
+			++cat;
+			phrases.push_back(vector<Phrase>());
+			phrases[cat].push_back(Phrase(line, 0));
 		}
 	}
 
 
 	for (int i = 0; i < phrases.size(); ++i) {
 		while (phrases[i].size() < 5) {
-			phrases[i].push_back("empty");//GUI crashes when I set to empty string
+			//GUI crashes when I set to empty string, really priority so it stays down
+			phrases[i].push_back(Phrase("empty", -1000000));
 		}
 	}
 
-
-	//set buttons to initial state
-
-	for (auto& i : phrases) {
-		for (auto& j : i) cout << j << endl;
+	for (int i = 0; i < phrases.size(); ++i) {
+		sort(phrases[i].begin() + 1, phrases[i].end());
 	}
 
-	//string newlines
 	//if you don't want to deal with newlines, just comment out this line and rebuild
 	newlines(phrases);
 

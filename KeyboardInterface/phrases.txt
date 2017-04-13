@@ -1,56 +1,66 @@
+#this line is a comment
+#so is this, so you can ignore it
+#format for a phrase is as follows:
+#[TAB][COUNT][SPACE][PHRASE]
+#You can include a newline as \n
 General
-	Brad Ebenhoeh
-	bradeben
-	bradeben@umich.edu
-	University of Michigan
-	Go Blue!
+	1002 Brad Ebenhoeh
+	153 bradeben@umich.edu
+	103 bradeben
+	15 University of Michigan
+	1 Go Blue!
 Aerospace
-	aircraft
-	spacecraft
-	pressure
-	structures
-	controls
-	propulsion
-	orbit
-	fuel
-	angle
-	delta-v
-	yaw
-	pitch
-	roll
-	stress
-	strain
+	9 aircraft
+	5 spacecraft
+	4 pressure
+	4 structures
+	1 controls
+	1 propulsion
+	1 orbit
+	1 fuel
+	1 angle
+	1 delta-v
+	1 yaw
+	1 pitch
+	1 roll
+	1 stress
+	1 strain
 Python
-	for i in range(n):\n
-	i = 0
-	print ''
-	l = []
-	d = {}
-	def function_name():\n
-	class class_name:\n
+	1 for i in range(n):\n
+	1 i = 0
+	1 print ''
+	1 l = []
+	1 d = {}
+	1 def function_name():\n
+	1 class class_name:\n
 C++
-	#include <iostream>\n#include <string>\n#include <vector>\n
-	using namespace std;\n
-	int main(){\n\n	return 0;\n}
-	for(int i = 0; i < n; ++i){\n\n}\n
-	if(){\n\n}\nelse{\n\n}\n
-	int i = 0;
-	cout << i;
+	1 #include <iostream>\n#include <string>\n#include <vector>\n
+	1 using namespace std;\n
+	1 int main(){\n\n	return 0;\n}
+	1 for(int i = 0; i < n; ++i){\n\n}\n
+	1 if(){\n\n}\nelse{\n\n}\n
+	1 int i = 0;
+	1 cout << i;
 Email
-	Hello,\n
-	To whom it may concern,\n
-	Could you please let me know
-	I am writing to
-	Please see the attached file.
-	My name is Brad.
-	Thank you for your time.
-	I look forward to hearing from you.
-	Best,\nBrad
-	Sincerely,\nBrad
+	100 Sincerely,\nBrad
+	23 Hello,\n
+	20 To whom it may concern,\n
+	14 Please see the attached file.
+	10 Could you please let me know
+	6 I am writing to
+	2 My name is Brad.
+	1 Thank you for your time.
+	1 I look forward to hearing from you.
+	1 Best,\nBrad
 Keyboard Shortcuts
-	Ctrl+c
-	Ctrl+v
-	Alt+Tab
-	Alt+Esc
-	Ctrl+Tab
-	Ctrl+Shift+t
+	1 Ctrl+c
+	1 Ctrl+v
+	1 Alt+Tab
+	1 Alt+Esc
+	1 Ctrl+Tab
+	1 Ctrl+Shift+t
+Empty
+	-1000000 empty
+	-1000000 empty
+	-1000000 empty
+	-1000000 empty
