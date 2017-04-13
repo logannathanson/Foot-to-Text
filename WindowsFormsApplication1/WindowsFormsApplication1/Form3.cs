@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
         public event ChangeColor ChangeButtonColor;
         public event ChangeColor ChangeHighlightedColor;
 
+        private Form2 frm2;
 
 
         public Form3()
@@ -232,6 +233,17 @@ namespace WindowsFormsApplication1
         {
             Color newColor = Color.HotPink;
             ChangeHighlightedColor(newColor);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (Application.OpenForms.Count > 2)
+            {
+                Application.OpenForms[2].Close();
+            }
+
+            frm2 = new Form2();
+            frm2.Show();
         }
     }
 }

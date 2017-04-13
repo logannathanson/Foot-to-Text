@@ -108,9 +108,9 @@ namespace WindowsFormsApplication1
             {
                 button5.Font = new Font("Franklin Gothic Medium", button5.Font.Size + 1, FontStyle.Bold);
             }
+            label1.Height = button4.Height + 20;
+            label1.Width = button4.Width / 4;
 
-            Debug.WriteLine(button4.PreferredSize);
-            Debug.WriteLine(button4.Size);
         }
 
         private void Form1_Resize(object sender, System.EventArgs e)
@@ -120,6 +120,8 @@ namespace WindowsFormsApplication1
                 button3.Height = (this.Height / 5) - 20;
                 button4.Height = (this.Height / 5) - 20;
                 button5.Height = (this.Height / 5) - 20;
+            label1.Height = (this.Height / 5) ;
+
 
             button1.Location = new Point(15, 10);
 
@@ -129,6 +131,7 @@ namespace WindowsFormsApplication1
             button3.Location = new Point(button1.Location.X, button2.Location.Y + button1.Height + 10);
             button4.Location = new Point(button1.Location.X, button3.Location.Y + button1.Height + 10);
             button5.Location = new Point(button1.Location.X, button4.Location.Y + button1.Height + 10);
+            label1.Location = new Point(button4.Location.X + button4.Width - 70, button3.Location.Y + button1.Height + 15);
 
             resizeAll();
         }
@@ -292,8 +295,7 @@ namespace WindowsFormsApplication1
                     var msg = data.dwData;
                     var str = Marshal.PtrToStringAnsi(data.lpData);
 
-
-                    switch ((MessageType) msg)
+                    switch ((MessageType)msg)
                     {
                         case MessageType.option1Text:
                             button1.Text = str;
@@ -316,8 +318,18 @@ namespace WindowsFormsApplication1
                             break;
 
                     }
+
+                    if (currentHighlightedButton !=  "4")
+                    {
+                        button5.Text = "Settings ↓";
+                    } else
+                    {
+                        button5.Text = "Settings";
+                    }
+
                     break;
             }
+
 
             base.WndProc(ref m);
         }
@@ -363,6 +375,11 @@ namespace WindowsFormsApplication1
 
             frm3.Show();
             resizeAll();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

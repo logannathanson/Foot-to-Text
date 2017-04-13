@@ -62,12 +62,13 @@
             this.highlightColorBeige = new System.Windows.Forms.Button();
             this.highlightColorBurlyWood = new System.Windows.Forms.Button();
             this.highlightColorTransparent = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(77, 9);
+            this.label1.Location = new System.Drawing.Point(27, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(254, 68);
             this.label1.TabIndex = 0;
@@ -461,11 +462,24 @@
             this.highlightColorTransparent.UseVisualStyleBackColor = false;
             this.highlightColorTransparent.Click += new System.EventHandler(this.highlightColorTransparent_Click);
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(258, 9);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(125, 68);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "Help";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(406, 818);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.highlightColorHotPink);
             this.Controls.Add(this.highlightColorSkyBlue);
             this.Controls.Add(this.highlightColorMintCream);
@@ -543,5 +557,6 @@
         private System.Windows.Forms.Button highlightColorBeige;
         private System.Windows.Forms.Button highlightColorBurlyWood;
         private System.Windows.Forms.Button highlightColorTransparent;
+        private System.Windows.Forms.Button button2;
     }
 }
