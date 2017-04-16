@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -244,6 +245,14 @@ namespace WindowsFormsApplication1
 
             frm2 = new Form2();
             frm2.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var directory = System.Environment.CurrentDirectory;
+            directory = directory.Substring(0, directory.Length - 59);
+            directory = directory + "KeyboardInterface\\phrases.txt";
+            Process.Start("notepad.exe", directory);
         }
     }
 }

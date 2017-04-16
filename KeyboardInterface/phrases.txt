@@ -1,8 +1,10 @@
+#------TUTORIAL---------------------------#
 #this line is a comment
 #so is this, so you can ignore it
 #format for a phrase is as follows:
 #[TAB][COUNT][SPACE][PHRASE]
 #You can include a newline as \n
+#------TUTORIAL---------------------------#
 General
 	1002 Brad Ebenhoeh
 	153 bradeben@umich.edu
