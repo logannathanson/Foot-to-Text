@@ -39,7 +39,7 @@
             this.label2.Location = new System.Drawing.Point(9, 9);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(493, 627);
+            this.label2.Size = new System.Drawing.Size(493, 808);
             this.label2.TabIndex = 1;
             this.label2.Text = resources.GetString("label2.Text");
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -48,8 +48,8 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Red;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(16, 661);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(16, 840);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(468, 108);
             this.button1.TabIndex = 0;
@@ -61,10 +61,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 784);
+            this.ClientSize = new System.Drawing.Size(500, 961);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form2";
             this.Text = "Form2";
             this.ResumeLayout(false);

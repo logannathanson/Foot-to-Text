@@ -120,10 +120,8 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Use the foot pedals (back, up, down, select) to navigate the menus.
 
-Selecting a phrase will type it into the currently active window. The most-used phrases in each list will shift to the top.
+Selecting a phrase will type it into the currently active window. The most-used phrases in each list will shift to the top. You can edit the categories, content, and order of phrases in the phrases.txt file in Settings.
 
-You can edit the categories, content, and order of phrases in the phrases.txt file in Settings.
-
-</value>
+An arrow symbol at the bottom of the screen indicates that there are entries out of view--scroll down to see them.</value>
   </data>
 </root>

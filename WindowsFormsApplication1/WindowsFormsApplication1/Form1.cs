@@ -241,7 +241,9 @@ namespace WindowsFormsApplication1
         private void Form_Shown(object sender, EventArgs e)
         {
             ProcessStartInfo objProcess = new ProcessStartInfo(@"..\..\..\..\Main\Debug\Main.exe");
-            //objProcess.CreateNoWindow = true; // Uncomment for release mode
+            objProcess.UseShellExecute = false;
+            objProcess.RedirectStandardOutput = true;
+            objProcess.CreateNoWindow = true; // Uncomment for release mode
 
             main_proc = Process.Start(objProcess);
         }
