@@ -35,7 +35,7 @@ private:
 	Keyboard();
 
 	void send_char(char c);
-	void send_key(Key k);
+	void send_newline();
 	
     void send_key_down(WORD virtual_key);
 	

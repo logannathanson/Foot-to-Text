@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <cctype>
 #include <algorithm>
+#include <iostream>
 
 Keyboard::Key::Key(const std::string& key_str)
 {
@@ -47,7 +48,8 @@ void Keyboard::send_word(const std::string& word)
 {
     for (char c : word)
     {
-        send_char(c);
+		if (c == '\n') send_newline();
+        else send_char(c);
     }
 }
 
@@ -76,6 +78,11 @@ void Keyboard::send_char(char c)
 
     send_key_down(static_cast<WORD>(virtual_key));
     send_key_up(static_cast<WORD>(virtual_key));
+}
+
+void Keyboard::send_newline() {
+	send_key_down(VK_RETURN);
+	send_key_up(VK_RETURN);
 }
 
 void Keyboard::send_key_down(WORD virtual_key)
