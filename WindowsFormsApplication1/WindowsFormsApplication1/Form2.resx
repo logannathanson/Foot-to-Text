@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Use the foot pedals (back, up, down, select) to navigate the menus.
+
+Selecting a phrase will type it into the currently active window. The most-used phrases in each list will shift to the top.
+
+You can edit the categories, content, and order of phrases in the phrases.txt file in Settings.
+
+</value>
+  </data>
 </root>
