@@ -2,7 +2,7 @@
 #define BUTTON_PIN_BACK 9
 #define BUTTON_PIN_UP 10
 #define BUTTON_PIN_DOWN 11
-#define BUTTON_PIN_SELECT 12
+#define BUTTON_PIN_SELECT 8
 
 Bounce back = Bounce(BUTTON_PIN_BACK, 10);
 Bounce up = Bounce(BUTTON_PIN_UP, 10);
@@ -10,15 +10,13 @@ Bounce down = Bounce(BUTTON_PIN_DOWN, 10);
 Bounce select = Bounce(BUTTON_PIN_SELECT, 10);
 
 void setup() {
-  pinMode(BUTTON_PIN_BACK,INPUT_PULLUP);
+  pinMode(BUTTON_PIN_BACK,INPUT);
 
-  
-  pinMode(BUTTON_PIN_UP, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_UP, INPUT);
 
-  
-  pinMode(BUTTON_PIN_DOWN, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_DOWN, INPUT);
 
-  pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_SELECT, INPUT);
 
   Serial.begin(9600);
 }
